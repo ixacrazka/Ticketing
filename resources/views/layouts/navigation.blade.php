@@ -22,7 +22,7 @@
             <div class="flex">
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex font-bold md:text-4xl">
-                   <span class=""> Welcome,{{ Auth::user()->name }}🤗</span>
+                   <span class=""> Welcome,{{ Auth::user()->name }}🙌</span>
                 </div>
             </div>
 

@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Pelapor;
+// use App\Models\Pelapor;
 use App\Models\Pengaduan;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+// use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Storage;
 
 class PengaduanController extends Controller
 {
@@ -14,73 +14,52 @@ class PengaduanController extends Controller
         return view('dashboard', compact('pengaduans'));
     }
 
-    public function create()
-    {
-        return view('tambah');
-    }
+    // public function create()
+    // {
+    //     return view('tambah');
+    // }
 
-    public function store(Request $request)
-    {
-        // Validasi input
-        $request->validate([
-            'pelapor_id' => 'required|integer',
-            'naplikasi' => 'required|string|max:255',
-            'laporan' => 'required|string',
-            'status_id' => 'required|integer',
-            'jenis_id' => 'required|integer',
-            'file_foto' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'jenis_id' => 'required|integer',
-        ]);
+    // public function store(Request $request)
+    // {
+    //     // Validasi input
+    //     $request->validate([
+    //         'pelapor_id' => 'required|integer',
+    //         'naplikasi' => 'required|string|max:255',
+    //         'laporan' => 'required|string',
+    //         'status_id' => 'required|integer',
+    //         'jenis_id' => 'required|integer',
+    //         'file_foto' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //         'jenis_id' => 'required|integer',
+    //     ]);
 
-        // Simpan file jika ada
-        // $filePath = null;
-        // if ($request->hasFile('file_foto')) {
-        //     $filePath = $request->file('file_foto')->store('public/storage');
-        //     $filePath = str_replace('public/storage', '', $filePath);
-        // }
-        Pengaduan::create([
-            'pelapor_id' => $request->pelapor_id,
-            'naplikasi' => $request->naplikasi,
-            'laporan' => $request->laporan,
-            'status_id' => $request->status_id,
-            'jenis_id' => $request->jenis_id,
-            'file_foto' => $filename ?? '',
-            'kode'=>$request->kode,
-        ]);
+    //     // Simpan file jika ada
+    //     // $filePath = null;
+    //     // if ($request->hasFile('file_foto')) {
+    //     //     $filePath = $request->file('file_foto')->store('public/storage');
+    //     //     $filePath = str_replace('public/storage', '', $filePath);
+    //     // }
+    //     Pengaduan::create([
+    //         'pelapor_id' => $request->pelapor_id,
+    //         'naplikasi' => $request->naplikasi,
+    //         'laporan' => $request->laporan,
+    //         'status_id' => $request->status_id,
+    //         'jenis_id' => $request->jenis_id,
+    //         'file_foto' => $filename ?? '',
+    //         'kode'=>$request->kode,
+    //     ]);
 
-        return redirect()->route('dashboard')->with('success', 'Data berhasil ditambahkan');
-    }
+    //     return redirect()->route('dashboard')->with('success', 'Data berhasil ditambahkan');
+    // }
 
-    public function destroy($id,$pelapor_id,$jenis_id)
-    {
-        $pengaduans = Pengaduan::findOrFail($id);
-        if ($pengaduans->file_foto) {
-            Storage::delete('public/' . $pengaduans->file_foto);
-        }
-        $pengaduans->delete();
-        return redirect()->route('dashboard')->with('success', 'Data berhasil dihapus');
-    }
+    // public function destroy($id,$pelapor_id,$jenis_id)
+    // {
+    //     $pengaduans = Pengaduan::findOrFail($id);
+    //     if ($pengaduans->file_foto) {
+    //         Storage::delete('public/' . $pengaduans->file_foto);
+    //     }
+    //     $pengaduans->delete();
+    //     return redirect()->route('dashboard')->with('success', 'Data berhasil dihapus');
+    // }
 
-    public function updateStatus(Request $request, $pelaporId)
-{
-    // Validasi status
-    $request->validate([
-        'status' => 'required|exists:status,id', // Pastikan status ada di tabel status
-    ]);
-
-    // Temukan Pelapor dan Pengaduan terkait
-    $pelapor = Pelapor::findOrFail($pelaporId);
-
-    if ($pelapor->pengaduan) {
-        // Update status_id pada Pengaduan
-        $pelapor->pengaduan->update([
-            'status_id' => $request->input('status'),
-        ]);
-
-        return redirect()->route('dashboard')->with('success', 'Status berhasil diperbarui.');
-    } else {
-        return redirect()->route('dashboard')->with('error', 'Pengaduan tidak ditemukan.');
-    }
-}
 
 }

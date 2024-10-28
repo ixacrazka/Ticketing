@@ -86,11 +86,11 @@ class PelaporController extends Controller
         return redirect()->route('dashboard')->with('success', 'Data berhasil dihapus');
     }
 
-    //cek status
+    // Mengubah status
     public function updateStatus(Request $request, $id)
 {
     $pelapor = Pelapor::findOrFail($id);
-    $pengaduan = $pelapor->pengaduan; // Dapatkan pengaduan terkait
+    $pengaduan = $pelapor->pengaduan;
 
     if ($pengaduan) {
         $pengaduan->status_id = $request->input('status');

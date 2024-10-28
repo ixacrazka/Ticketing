@@ -24,12 +24,12 @@ class Pengaduan extends Model
         return $this->belongsTo(Pelapor::class, 'pelapor_id', 'id');
     }
 
-    //Ubah Status
+        // Relasi Pada Tabel Status
     public function status()
     {
         return $this->belongsTo(Status::class);
     }
-
+    // Relasi Pada Tabel Jenis
     public function jenis()
     {
         return $this->belongsTo(Jenis::class);

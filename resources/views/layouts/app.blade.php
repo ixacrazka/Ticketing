@@ -11,6 +11,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Data Table search dan Pagination     -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -27,7 +31,7 @@
             <ul class="mt-20 text-lg mx-5">
                 <li class="px-4 py-2 hover:scale-105 transition-transform duration-300 rounded-full bg-neon">
                     <a href="/dashboard" class="flex items-center space-x-4 text-black">
-                        <span>Dashboard</span>
+                        <span>Laporan Error</span>
                     </a>
                 </li>
                 <li class="px-4 py-2 hover:scale-105 transition-transform duration-300">
@@ -63,4 +67,6 @@
         </div>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </html>
