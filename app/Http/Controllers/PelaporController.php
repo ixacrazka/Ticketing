@@ -76,8 +76,6 @@ class PelaporController extends Controller
 
 
 
-
-
     public function destroy($id)
     {
         $pelapor = Pelapor::findOrFail($id);
@@ -89,26 +87,16 @@ class PelaporController extends Controller
     }
 
     //cek status
-    public function updateStatus(Request $request, $pelaporId)
-    {
-        // Validate that a status is selected
-        $request->validate([
-            'status' => 'required|exists:status,id', // Ensure the status exists in the statuses table
-        ]);
+    public function updateStatus(Request $request, $id)
+{
+    $pelapor = Pelapor::findOrFail($id);
+    $pengaduan = $pelapor->pengaduan; // Dapatkan pengaduan terkait
 
-        // Find the corresponding pelapor and update the status
-        $pelapor = Pelapor::findOrFail($pelaporId);
-
-        if ($pelapor->pengaduan) {
-            // Update status in pengaduan
-            $pelapor->pengaduan->update([
-                'status_id' => $request->input('status'),
-            ]);
-
-            return redirect()->route('dashboard')->with('success', 'Status berhasil diperbarui.');
-        } else {
-            return redirect()->route('dashboard')->with('error', 'Pengaduan tidak ditemukan.');
-        }
+    if ($pengaduan) {
+        $pengaduan->status_id = $request->input('status');
+        $pengaduan->save();
     }
 
+    return redirect()->route('dashboard')->with('success', 'Status berhasil diubah');
 }
+    }

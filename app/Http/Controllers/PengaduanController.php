@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Pelapor;
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -60,4 +60,27 @@ class PengaduanController extends Controller
         $pengaduans->delete();
         return redirect()->route('dashboard')->with('success', 'Data berhasil dihapus');
     }
+
+    public function updateStatus(Request $request, $pelaporId)
+{
+    // Validasi status
+    $request->validate([
+        'status' => 'required|exists:status,id', // Pastikan status ada di tabel status
+    ]);
+
+    // Temukan Pelapor dan Pengaduan terkait
+    $pelapor = Pelapor::findOrFail($pelaporId);
+
+    if ($pelapor->pengaduan) {
+        // Update status_id pada Pengaduan
+        $pelapor->pengaduan->update([
+            'status_id' => $request->input('status'),
+        ]);
+
+        return redirect()->route('dashboard')->with('success', 'Status berhasil diperbarui.');
+    } else {
+        return redirect()->route('dashboard')->with('error', 'Pengaduan tidak ditemukan.');
+    }
+}
+
 }

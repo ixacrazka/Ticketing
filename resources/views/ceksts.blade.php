@@ -132,23 +132,30 @@
             <div id="timeline" class="hidden bg-white p-4 rounded-md shadow-xl">
                 <h2 class="text-xl font-semibold mb-3">Status Antrian</h2>
                 <ul class="timeline">
-                    <li class="mb-3">
+                <li class="mb-3">
                         <div class="flex items-center mb-1">
                             <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">1</span>
+                            <h3 class="ml-3 text-base font-medium">Menunggu Konfirmasi</h3>
+                        </div>
+                        <p class="ml-9 text-gray-600 text-sm">Menunggu Konfirmasi dari Pihak Aplikasi.</p>
+                    </li>
+                    <li class="mb-3">
+                        <div class="flex items-center mb-1">
+                            <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">2</span>
                             <h3 class="ml-3 text-base font-medium">Dikonfirmasi</h3>
                         </div>
                         <p class="ml-9 text-gray-600 text-sm">Permohonan antrian telah Dikonfirmasi.</p>
                     </li>
                     <li class="mb-3">
                         <div class="flex items-center mb-1">
-                            <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">2</span>
+                            <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">3</span>
                             <h3 class="ml-3 text-base font-medium">DiProses</h3>
                         </div>
                         <p class="ml-9 text-gray-600 text-sm">Permohonan antrian sedang diproses.</p>
                     </li>
                     <li class="mb-3">
                         <div class="flex items-center mb-1">
-                            <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">3</span>
+                            <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">4</span>
                             <h3 class="ml-3 text-base font-medium">Selesai</h3>
                         </div>
                         <p class="ml-9 text-gray-600 text-sm">Proses antrian telah selesai.</p>

@@ -40,7 +40,7 @@
                                             <td class="px-4 py-2 border">{{ $pelapor->npelapor }}</td>
                                             <td class="px-4 py-2 border">{{ $pelapor->pengaduan->naplikasi ?? 'data-tidak-ditemukan' }}</td>
                                             <td class="px-4 py-2 border">{{ $pelapor->pengaduan->laporan ?? 'data-tidak-ditemukan' }}</td>
-                                            <td class="px-4 py-2 border">{{ $pelapor->pengaduan->status_id ?? 'data-tidak-ditemukan' }}</td>
+                                            <td class="px-4 py-2 border">{{ $pelapor->pengaduan->status->name ?? 'data-tidak-ditemukan' }}</td>
                                             <td class="px-4 py-2 border">
                                                 @if ($pelapor->pengaduan && $pelapor->pengaduan->file_foto)
                                                     <img src="{{ asset('uploads/file_foto/' . $pelapor->pengaduan->file_foto) }}" alt="Foto Pelapor" class="w-20 h-20 cursor-pointer" onclick="document.getElementById('myModal').showModal()">
@@ -88,11 +88,14 @@
                                                     <div class="bg-white p-6 rounded-lg shadow-lg">
                                                         <h2 class="text-lg font-bold">Ubah Status untuk {{ $pelapor->npelapor }}</h2>
                                                         <form action="{{ route('pelapor.updateStatus', $pelapor->id) }}" method="POST">
+                                                            @csrf
                                                             <div class="mt-4">
                                                                 <label for="status" class="block text-sm font-medium">Pilih Status:</label>
                                                                 <select name="status" id="status" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm font-[Outfit]">
                                                                 @foreach($statues as $sts)
-                                                                    <option value="{{ $sts->id }}">{{ $sts->name }}</option>
+                                                                    <option value="{{ $sts->id }}" {{ $pelapor->pengaduan && $pelapor->pengaduan->status_id == $sts->id ? 'selected' : '' }}>
+                                                                        {{ $sts->name }}
+                                                                    </option>
                                                                 @endforeach
                                                                 </select>
                                                             </div>

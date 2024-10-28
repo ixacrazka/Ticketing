@@ -32,9 +32,9 @@ class Pelapor extends Model
         return $this->belongsTo(Jenis::class, 'jenis_id', 'id');
     }
     // Pada model Pengaduan
-    // public function status()
-    // {
-    //     return $this->belongsTo(Status::class);
-    // }
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
 
 }

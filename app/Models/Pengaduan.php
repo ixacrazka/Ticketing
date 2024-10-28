@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,7 +24,7 @@ class Pengaduan extends Model
         return $this->belongsTo(Pelapor::class, 'pelapor_id', 'id');
     }
 
-    //cek status
+    //Ubah Status
     public function status()
     {
         return $this->belongsTo(Status::class);
