@@ -20,33 +20,34 @@
 </head>
 <body class="font-[Outfit] bg-gray-100">
     <div class="min-h-screen flex">
-        <!-- Sidebar -->
-        <div class="w-64 h-screen m-4 bg-indigo-950 shadow-neon text-white rounded-3xl hidden md:block font-[Outfit]">
-            <div class="p-4 mt-5 ml-6">
-            <span class="text-3xl text-yellow-400 font-bold">Ticket</span><span class="text-2xl text-white font-bold">ing</span>
-            <b>
-                DASHBOARD
-            </b>
-            </div>
-            <ul class="mt-20 text-lg mx-5">
-                <li class="px-4 py-2 hover:scale-105 transition-transform duration-300 rounded-full bg-neon">
-                    <a href="/dashboard" class="flex items-center space-x-4 text-black">
-                        <span>Laporan Error</span>
-                    </a>
-                </li>
-                <li class="px-4 py-2 hover:scale-105 transition-transform duration-300">
-                    <a href="/jenis" class="flex items-center space-x-4">
-                        <span>Jenis Pengaduan</span>
-                    </a>
-                </li>
-                <li class="px-4 py-2 hover:scale-105 transition-transform duration-300">
-                    <a href="/status" class="flex items-center space-x-4">
-                        <span>Status</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- End Sidebar -->
+<!-- Sidebar -->
+<div class="w-64 min-h-screen m-4 bg-blue-600 text-white rounded-3xl hidden md:block font-[Outfit]">
+    <div class="p-4 mt-5 ml-6">
+        <span class="text-3xl text-yellow-400 font-bold">Ticket</span><span class="text-2xl text-white font-bold">ing</span>
+        <b>
+            DASHBOARD
+        </b>
+    </div>
+    <ul class="mt-20 text-lg mx-5 sticky top-10">
+    <li class="px-4 py-2 hover:scale-105 transition-transform duration-300 rounded-full {{ request()->is('dashboard') ? 'bg-neon text-black' : '' }}">
+        <a href="/dashboard" class="flex items-center space-x-4">
+            <span>Laporan Error</span>
+        </a>
+    </li>
+    <li class="px-4 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('jenis') ? 'bg-neon text-black' : '' }} rounded-full">
+        <a href="/jenis" class="flex items-center space-x-4">
+            <span>Jenis Pengaduan</span>
+        </a>
+    </li>
+    <li class="px-4 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('status') ? 'bg-neon text-black' : '' }} rounded-full">
+        <a href="/status" class="flex items-center space-x-4">
+            <span>Status</span>
+        </a>
+    </li>
+</ul>
+</div>
+<!-- End Sidebar -->
+
 
         <!--  Konten -->
         <div class="flex-1">
@@ -67,6 +68,4 @@
         </div>
     </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </html>

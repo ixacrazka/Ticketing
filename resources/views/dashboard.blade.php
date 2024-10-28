@@ -109,8 +109,8 @@
     $(document).ready(function() {
         $('#pelaporTable').DataTable({
             paging: true,
-            pageLength: 10, // Menentukan jumlah baris per halaman
-            lengthMenu: [10, 25, 50, 100] // Opsi jumlah baris per halaman
+            pageLength: 5, // Menentukan jumlah baris per halaman
+            lengthMenu: [5, 25, 50, 100] // Opsi jumlah baris per halaman
         });
     });
 
@@ -135,25 +135,5 @@
     function closeStatusModal(pelaporId) {
         document.getElementById('statusModal-' + pelaporId).classList.add('hidden');
     }
-//Data Table
-        $(document).ready(function() {
-    $('#pelaporTable').DataTable({
-        paging: true,
-        pageLength: 10,
-        lengthMenu: [10, 25, 40, 100],
-        searching: true,
-        language: {
-            search: "Cari:",
-            lengthMenu: " _MENU_",
-            paginate: {
-                next: "Berikutnya",
-                previous: "Sebelumnya"
-            },
-            info: "Menampilkan _START_ hingga _END_ dari _TOTAL_ entri",
-            infoEmpty: "Menampilkan 0 hingga 0 dari 0 entri",
-            infoFiltered: "(disaring dari _MAX_ total entri)"
-        }
-    });
-});
 </script>
 @endsection
