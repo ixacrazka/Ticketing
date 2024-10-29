@@ -37,13 +37,17 @@
                                         <td class="px-4 py-2 border">{{ $pelapor->pengaduan->status->name ?? 'data-tidak-ditemukan' }}</td>
                                         <td class="px-4 py-2 border">
                                             @if ($pelapor->pengaduan && $pelapor->pengaduan->file_foto)
-                                                <img src="{{ asset('uploads/file_foto/' . $pelapor->pengaduan->file_foto) }}" alt="Foto Pelapor" class="w-20 h-20 cursor-pointer" onclick="document.getElementById('myModal').showModal()">
-                                                <dialog id="myModal" class="modal">
-                                                    <div class="modal-box">
-                                                        <div class="modal-action float-end">
-                                                            <button class="btn text-3xl" onclick="document.getElementById('myModal').close()">X</button>
-                                                        </div>
-                                                        <img src="{{ asset('uploads/file_foto/' . $pelapor->pengaduan->file_foto) }}" alt="Foto Pelapor Full" class="w-full h-auto">
+                                                <!-- Thumbnail yang bisa diklik -->
+                                                <img src="{{ asset('uploads/file_foto/' . $pelapor->pengaduan->file_foto) }}" alt="Foto Pelapor" class="w-20 h-20 cursor-pointer" onclick="document.getElementById('modal-{{ $pelapor->id }}').showModal()">
+
+                                                <!-- Modal Dialog -->
+                                                <dialog id="modal-{{ $pelapor->id }}" class="modal">
+                                                    <div class="flex justify-center items-center">
+                                                        <!-- Tombol Close di Luar Gambar -->
+                                                        <button class="absolute top-0 right-0 m-4 text-2xl bg-gray-700 text-white px-2 py-1 rounded-full" onclick="document.getElementById('modal-{{ $pelapor->id }}').close()">×</button>
+
+                                                        <!-- Foto ukuran sedang tanpa border -->
+                                                        <img src="{{ asset('uploads/file_foto/' . $pelapor->pengaduan->file_foto) }}" alt="Foto Pelapor Full" class="w-1/2 h-auto">
                                                     </div>
                                                 </dialog>
                                             @else

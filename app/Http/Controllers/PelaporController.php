@@ -12,6 +12,13 @@ use Illuminate\Support\Str;
 
 class PelaporController extends Controller
 {
+    public function pelapor()
+    {
+        $pelapors = Pelapor::with('instansi')->get();
+        $instansis = Instansi::all();
+        return view('pelapor',compact('pelapors'));
+    }
+
     public function index()
     {
         $pelapors = Pelapor::with('instansi', 'pengaduan')->get();

@@ -21,12 +21,9 @@
 <body class="font-[Outfit] bg-gray-100">
     <div class="min-h-screen flex">
 <!-- Sidebar -->
-<div class="w-64 min-h-screen m-4 bg-blue-600 text-white rounded-3xl hidden md:block font-[Outfit]">
-    <div class="p-4 mt-5 ml-6">
-        <span class="text-3xl text-yellow-400 font-bold">Ticket</span><span class="text-2xl text-white font-bold">ing</span>
-        <b>
-            DASHBOARD
-        </b>
+<div class="w-64 min-h-screen m-4 bg-indigo-950 text-white rounded-3xl hidden md:block font-[Outfit]">
+    <div class="p-4 mt-8 ml-9">
+        <span class="text-4xl text-yellow-400 font-bold">Ticket</span><span class="text-3xl text-white font-bold">Ing</span>
     </div>
     <ul class="mt-20 text-lg mx-5 sticky top-10">
     <li class="px-4 py-2 hover:scale-105 transition-transform duration-300 rounded-full {{ request()->is('dashboard') ? 'bg-neon text-black' : '' }}">
@@ -42,6 +39,11 @@
     <li class="px-4 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('status') ? 'bg-neon text-black' : '' }} rounded-full">
         <a href="/status" class="flex items-center space-x-4">
             <span>Status</span>
+        </a>
+    </li>
+    <li class="px-4 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('pelapor') ? 'bg-neon text-black' : '' }} rounded-full">
+        <a href="/pelapor" class="flex items-center space-x-4">
+            <span>Identitas Pelapor</span>
         </a>
     </li>
 </ul>

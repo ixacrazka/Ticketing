@@ -14,6 +14,7 @@ Route::middleware('auth')->group(function () {
 
     // Dashboard route
     Route::get('/dashboard', [PelaporController::class, 'index'])->middleware(['verified'])->name('dashboard');
+    Route::get('/pelapor', [PelaporController::class, 'pelapor'])->middleware(['verified'])->name('pelapor');
 
     // Pelapor routes
     Route::delete('/tambah/{id}', [PelaporController::class, 'destroy'])->name('tambah.destroy');
