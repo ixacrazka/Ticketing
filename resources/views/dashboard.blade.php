@@ -10,23 +10,22 @@
                 </div>
             @endif
 
-            <div class="overflow-scroll">
-                <div class="p-6">
-                    <div class="overflow-x-auto">
+            <div class="overflow-hidden">
+                <div class="p-6 text-black">
                         <table id="pelaporTable" class="min-w-full overflow-hidden rounded-3xl shadow-lg">
-                            <thead class="bg-gray-200 text-black">
+                            <thead class="bg-gray-200">
                                 <tr>
-                                    <th class="px-4 py-2 border">Email</th>
-                                    <th class="px-4 py-2 border">No. HP</th>
-                                    <th class="px-4 py-2 border">Nama Pelapor</th>
-                                    <th class="px-4 py-2 border">Nama Aplikasi</th>
-                                    <th class="px-4 py-2 border">Laporan Error</th>
-                                    <th class="px-4 py-2 border">Status</th>
-                                    <th class="px-4 py-2 border">Foto Error</th>
-                                    <th class="px-4 py-2 border">Actions</th>
+                                    <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Email</th>
+                                    <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">No. HP</th>
+                                    <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Nama Pelapor</th>
+                                    <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Nama Aplikasi</th>
+                                    <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Laporan Error</th>
+                                    <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Status</th>
+                                    <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Foto Error</th>
+                                    <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="bg-white divide-y divide-gray-200">
                                 @foreach($pelapors as $pelapor)
                                     <tr>
                                         <td class="px-4 py-2 border">{{ $pelapor->email }}</td>
@@ -102,7 +101,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
                 </div>
             </div>
         </div>
@@ -110,6 +108,7 @@
 </div>
 
 <script>
+    //Code untuk Data Tables
     $(document).ready(function() {
         $('#pelaporTable').DataTable({
             paging: true,
@@ -117,7 +116,9 @@
             lengthMenu: [5, 25, 50, 100] // Opsi jumlah baris per halaman
         });
     });
+    //End code untuk Data Tables
 
+    //Funnction untuk menampilakan mdoals hapus
     function confirmDelete(pelaporId) {
         event.preventDefault();  // Mencegah form submit langsung
         document.getElementById('deleteModal').classList.remove('hidden');
@@ -130,8 +131,9 @@
     function cancelDelete() {
         document.getElementById('deleteModal').classList.add('hidden');
     }
+    //End Funnction untuk menampilakan mdoals hapus
 
-    // Functions for Status Modal
+    // Functions Untuk Menampilkan Modal Status
     function openStatusModal(pelaporId) {
         document.getElementById('statusModal-' + pelaporId).classList.remove('hidden');
     }
@@ -139,5 +141,6 @@
     function closeStatusModal(pelaporId) {
         document.getElementById('statusModal-' + pelaporId).classList.add('hidden');
     }
+    // End Functions Untuk Status Modal
 </script>
 @endsection
