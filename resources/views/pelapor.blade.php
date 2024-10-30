@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="flex">
-    <div class="py-12">
+    <div class="flex-1 py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             @if (session('success'))
                 <div class="p-4 mb-4 text-white bg-green-500 rounded">
@@ -10,7 +10,7 @@
                 </div>
             @endif
 
-            <div class="overflow-scroll">
+            <div class="overflow-hidden">
                 <div class="p-6">
                     <div class="overflow-x-auto">
                         <table id="idpelaporTable" class="min-w-full overflow-hidden rounded-3xl shadow-lg">

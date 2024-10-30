@@ -19,6 +19,13 @@ class PelaporController extends Controller
         return view('pelapor',compact('pelapors'));
     }
 
+    public function aduan()
+    {
+        $pelapors = Pelapor::with('pengaduan')->get();
+        $jenisis = Jenis::all();
+        return view('aduan', compact('pelapors','jenisis'));
+    }
+
     public function index()
     {
         $pelapors = Pelapor::with('instansi', 'pengaduan')->get();

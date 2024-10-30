@@ -23,7 +23,6 @@ class Pengaduan extends Model
     {
         return $this->belongsTo(Pelapor::class, 'pelapor_id', 'id');
     }
-
         // Relasi Pada Tabel Status
     public function status()
     {

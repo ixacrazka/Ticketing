@@ -27,4 +27,8 @@ class Pelapor extends Model
     {
         return $this->hasOne(Pengaduan::class, 'pelapor_id', 'id');
     }
+    public function jenis()
+    {
+        return $this->belongsTo(Jenis::class);
+    }
 }
