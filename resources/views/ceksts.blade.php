@@ -119,64 +119,59 @@
             </div>
         </div>
     </nav>
-
+    <form action="{{ route('ceksts') }}" method="post">
+    @csrf
     <div class="flex items-center justify-center h-full mt-20 md:mt-0 relative z-10">
         <div class="container mx-auto p-10 max-w-md rounded-xl bg-white shadow-black">
             <h1 class="text-2xl font-bold mb-4 text-center">Cek Status Antrian</h1>
 
             <div class="flex justify-center mb-6">
-                <input type="text" id="kodeInput" class="border border-black p-2 w-2/3 rounded-md" placeholder="Kode Antrian">
-                <button id="cekStatusBtn" class="bg-white border border-black hover:border-black p-2 ml-2 rounded-md">CEK</button>
+            <input type="text" name="kode" id="kodeInput" class="border border-black p-2 w-2/3 rounded-md" placeholder="Kode Antrian" required>
+                <button type="submit" class="bg-white border border-black hover:border-black p-2 ml-2 rounded-md">CEK</button>
             </div>
 
-            <div id="timeline" class="hidden bg-white p-4 rounded-md shadow-xl">
-                <h2 class="text-xl font-semibold mb-3">Status Antrian</h2>
-                <ul class="timeline">
-                <li class="mb-3">
-                        <div class="flex items-center mb-1">
-                            <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">1</span>
-                            <h3 class="ml-3 text-base font-medium">Menunggu Konfirmasi</h3>
-                        </div>
-                        <p class="ml-9 text-gray-600 text-sm">Menunggu Konfirmasi dari Pihak Aplikasi.</p>
-                    </li>
-                    <li class="mb-3">
-                        <div class="flex items-center mb-1">
-                            <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">2</span>
-                            <h3 class="ml-3 text-base font-medium">Dikonfirmasi</h3>
-                        </div>
-                        <p class="ml-9 text-gray-600 text-sm">Permohonan antrian telah Dikonfirmasi.</p>
-                    </li>
-                    <li class="mb-3">
-                        <div class="flex items-center mb-1">
-                            <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">3</span>
-                            <h3 class="ml-3 text-base font-medium">DiProses</h3>
-                        </div>
-                        <p class="ml-9 text-gray-600 text-sm">Permohonan antrian sedang diproses.</p>
-                    </li>
-                    <li class="mb-3">
-                        <div class="flex items-center mb-1">
-                            <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">4</span>
-                            <h3 class="ml-3 text-base font-medium">Selesai</h3>
-                        </div>
-                        <p class="ml-9 text-gray-600 text-sm">Proses antrian telah selesai.</p>
-                    </li>
-                </ul>
-            </div>
+            @if (session('error'))
+                <div class="text-red-500 text-center mb-4">
+                    {{ session('error') }}
+                </div>
+            @elseif(isset($pengaduan))
+                <div id="timeline" class="bg-white p-4 rounded-md shadow-xl">
+                    <h2 class="text-xl font-semibold mb-3">Status Antrian</h2>
+                    <ul class="timeline">
+                        <li class="mb-3">
+                            <div class="flex items-center mb-1">
+                                <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">1</span>
+                                <h3 class="ml-3 text-base font-medium">Menunggu Konfirmasi</h3>
+                            </div>
+                            <p class="ml-9 text-gray-600 text-sm">Menunggu Konfirmasi dari Pihak Aplikasi.</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex items-center mb-1">
+                                <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">2</span>
+                                <h3 class="ml-3 text-base font-medium">Dikonfirmasi</h3>
+                            </div>
+                            <p class="ml-9 text-gray-600 text-sm">Permohonan antrian telah Dikonfirmasi.</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex items-center mb-1">
+                                <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">3</span>
+                                <h3 class="ml-3 text-base font-medium">DiProses</h3>
+                            </div>
+                            <p class="ml-9 text-gray-600 text-sm">Permohonan antrian sedang diproses.</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex items-center mb-1">
+                                <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">4</span>
+                                <h3 class="ml-3 text-base font-medium">Selesai</h3>
+                            </div>
+                            <p class="ml-9 text-gray-600 text-sm">Proses antrian telah selesai.</p>
+                        </li>
+                    </ul>
+                </div>
+            @endif
         </div>
     </div>
-
-    <script>
-        document.getElementById('cekStatusBtn').addEventListener('click', function () {
-            const kode = document.getElementById('kodeInput').value;
-
-            if (kode === '12345') {
-                document.getElementById('timeline').classList.remove('hidden');
-            } else {
-                alert('Kode tidak valid, silakan coba lagi.');
-                document.getElementById('timeline').classList.add('hidden');
-            }
-        });
-    </script>
+    </form>
 </body>
 
 </html>

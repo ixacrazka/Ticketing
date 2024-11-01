@@ -113,4 +113,21 @@ class PelaporController extends Controller
 
     return redirect()->route('dashboard')->with('success', 'Status berhasil diubah');
 }
+
+public function cekStatusAntrian(Request $request)
+    {
+        // Ambil kode dari request
+        $kode = $request->input('kode');
+
+        // Cari data pengaduan berdasarkan kode
+        $pengaduan = Pengaduan::where('kode', $kode)->first();
+
+        if ($pengaduan) {
+            // Jika data ditemukan, tampilkan view dengan status antrian
+            return view('ceksts', compact('pengaduan'));
+        } else {
+            // Jika tidak ditemukan, kembalikan pesan error atau alihkan kembali dengan pesan
+            return redirect()->back()->with('error', 'Kode tidak valid, silakan coba lagi.');
+        }
     }
+}
