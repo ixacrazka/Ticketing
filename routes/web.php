@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function () {
         return view('count');
     });
 
+    Route::get('/ceksts', [PelaporController::class, 'halamanStatusAntrian'])->name('ceksts');
     Route::post('/ceksts', [PelaporController::class, 'cekStatusAntrian'])->name('ceksts');
 
 

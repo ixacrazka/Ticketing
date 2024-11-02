@@ -114,12 +114,17 @@ class PelaporController extends Controller
     return redirect()->route('dashboard')->with('success', 'Status berhasil diubah');
 }
 
-public function cekStatusAntrian(Request $request)
+    public function halamanStatusAntrian()
+    {
+        return view('ceksts');
+    }
+
+    public function cekStatusAntrian(Request $request)
     {
         // Ambil kode dari request
         $kode = $request->input('kode');
 
-        // Cari data pengaduan berdasarkan kode
+        // // Cari data pengaduan berdasarkan kode
         $pengaduan = Pengaduan::where('kode', $kode)->first();
 
         if ($pengaduan) {
