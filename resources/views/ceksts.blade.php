@@ -9,20 +9,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet">
     @vite('resources/css/app.css')
-    <!-- STYLE BUAT ANIMASI BACKGROUND -->
+    <!-- STYLE FOR ANIMATED BACKGROUND -->
     <style>
         .banner {
             position: relative;
-            height: 64vh; /* Adjust height as needed */
-            overflow: hidden; /* Ensure no overflow */
-            background-color: #1d3557; /* Blue background for the banner */
-            color: #ffffff; /* White text color */
-            font-family: 'Poppins', sans-serif; /* Apply Poppins font */
+            height: 64vh;
+            overflow: hidden;
+            background-color: #1d3557;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
         }
 
         .navbar {
             transition: transform 0.3s ease-in-out;
-            font-family: 'Poppins', sans-serif; /* Apply Poppins font */
+            font-family: 'Poppins', sans-serif;
         }
 
         .navbar-hidden {
@@ -46,14 +46,13 @@
             background-image: linear-gradient(to bottom, rgba(14, 65, 102, 0.86), #0e4166);
         }
     </style>
-      <!-- END STYLE BUAT ANIMASI BACKGROUND-->
+    <!-- END STYLE FOR ANIMATED BACKGROUND-->
 </head>
 
 <body class="bg-white font-[Poppins] h-screen flex flex-col justify-center">
     <!-- SVG Background -->
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 1600 900"
-        preserveAspectRatio="xMidYMax slice">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        width="100%" height="100%" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
         <defs>
             <linearGradient id="bg">
                 <stop offset="0%" style="stop-color:rgba(130, 158, 249, 0.06)"></stop>
@@ -65,40 +64,19 @@
         </defs>
         <g>
             <use xlink:href='#wave' opacity=".3">
-                <animateTransform
-                    attributeName="transform"
-                    attributeType="XML"
-                    type="translate"
-                    dur="10s"
-                    calcMode="spline"
-                    values="270 230; -334 180; 270 230"
-                    keyTimes="0; .5; 1"
-                    keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0"
-                    repeatCount="indefinite" />
+                <animateTransform attributeName="transform" attributeType="XML" type="translate" dur="10s"
+                    calcMode="spline" values="270 230; -334 180; 270 230" keyTimes="0; .5; 1"
+                    keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0" repeatCount="indefinite" />
             </use>
             <use xlink:href='#wave' opacity=".6">
-                <animateTransform
-                    attributeName="transform"
-                    attributeType="XML"
-                    type="translate"
-                    dur="8s"
-                    calcMode="spline"
-                    values="-270 230;243 220;-270 230"
-                    keyTimes="0; .6; 1"
-                    keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0"
-                    repeatCount="indefinite" />
+                <animateTransform attributeName="transform" attributeType="XML" type="translate" dur="8s"
+                    calcMode="spline" values="-270 230;243 220;-270 230" keyTimes="0; .6; 1"
+                    keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0" repeatCount="indefinite" />
             </use>
             <use xlink:href='#wave' opacity=".9">
-                <animateTransform
-                    attributeName="transform"
-                    attributeType="XML"
-                    type="translate"
-                    dur="6s"
-                    calcMode="spline"
-                    values="0 230;-140 200;0 230"
-                    keyTimes="0; .4; 1"
-                    keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0"
-                    repeatCount="indefinite" />
+                <animateTransform attributeName="transform" attributeType="XML" type="translate" dur="6s"
+                    calcMode="spline" values="0 230;-140 200;0 230" keyTimes="0; .4; 1"
+                    keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0" repeatCount="indefinite" />
             </use>
         </g>
     </svg>
@@ -119,14 +97,14 @@
             </div>
         </div>
     </nav>
+
     <form action="{{ route('ceksts') }}" method="post">
     @csrf
     <div class="flex items-center justify-center h-full mt-20 md:mt-0 relative z-10">
         <div class="container mx-auto p-10 max-w-md rounded-xl bg-white shadow-black">
             <h1 class="text-2xl font-bold mb-4 text-center">Cek Status Antrian</h1>
-
             <div class="flex justify-center mb-6">
-            <input type="text" name="kode" id="kodeInput" class="border border-black p-2 w-2/3 rounded-md" placeholder="Kode Antrian" required>
+                <input type="text" name="kode" id="kodeInput" class="border border-black p-2 w-2/3 rounded-md" placeholder="Kode Antrian" required>
                 <button type="submit" class="bg-white border border-black hover:border-black p-2 ml-2 rounded-md">CEK</button>
             </div>
 
@@ -137,41 +115,27 @@
             @elseif(isset($pengaduan))
                 <div id="timeline" class="bg-white p-4 rounded-md shadow-xl">
                     <h2 class="text-xl font-semibold mb-3">Status Antrian</h2>
-                    <ul class="timeline">
-                        <li class="mb-3">
-                            <div class="flex items-center mb-1">
-                                <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">1</span>
-                                <h3 class="ml-3 text-base font-medium">Menunggu Konfirmasi</h3>
-                            </div>
-                            <p class="ml-9 text-gray-600 text-sm">Menunggu Konfirmasi dari Pihak Aplikasi.</p>
-                        </li>
-                        <li class="mb-3">
-                            <div class="flex items-center mb-1">
-                                <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">2</span>
-                                <h3 class="ml-3 text-base font-medium">Dikonfirmasi</h3>
-                            </div>
-                            <p class="ml-9 text-gray-600 text-sm">Permohonan antrian telah Dikonfirmasi.</p>
-                        </li>
-                        <li class="mb-3">
-                            <div class="flex items-center mb-1">
-                                <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">3</span>
-                                <h3 class="ml-3 text-base font-medium">DiProses</h3>
-                            </div>
-                            <p class="ml-9 text-gray-600 text-sm">Permohonan antrian sedang diproses.</p>
-                        </li>
-                        <li class="mb-3">
-                            <div class="flex items-center mb-1">
-                                <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">4</span>
-                                <h3 class="ml-3 text-base font-medium">Selesai</h3>
-                            </div>
-                            <p class="ml-9 text-gray-600 text-sm">Proses antrian telah selesai.</p>
-                        </li>
-                    </ul>
+                    @if($pelapors && count($pelapors) > 0)
+                        <ul class="timeline">
+                            @foreach($pelapors as $ceksts)
+                                <li class="mb-3">
+                                    <div class="flex items-center mb-1">
+                                        <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">1</span>
+                                        <h3 class="ml-3 text-base font-medium">{{ $ceksts->pengaduan->status->name }}</h3>
+                                    </div>
+                                    <p class="ml-9 text-gray-600 text-sm">Menunggu Konfirmasi dari Pihak Aplikasi.</p>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p class="text-gray-600 text-sm">Tidak ada status untuk kode ini.</p>
+                    @endif
                 </div>
             @endif
         </div>
     </div>
-    </form>
+</form>
+
 </body>
 
 </html>

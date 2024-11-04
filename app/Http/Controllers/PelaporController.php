@@ -119,20 +119,23 @@ class PelaporController extends Controller
         return view('ceksts');
     }
 
-    public function cekStatusAntrian(Request $request)
+    public function cekStatus(Request $request)
     {
-        // Ambil kode dari request
-        $kode = $request->input('kode');
+        $request->validate([
+            'kode' => 'required|string',
+        ]);
 
-        // // Cari data pengaduan berdasarkan kode
-        $pengaduan = Pengaduan::where('kode', $kode)->first();
+        $pengaduan = Pengaduan::where('kode', $request->kode)->with('pelapor', 'status')->first();
 
-        if ($pengaduan) {
-            // Jika data ditemukan, tampilkan view dengan status antrian
-            return view('ceksts', compact('pengaduan'));
-        } else {
-            // Jika tidak ditemukan, kembalikan pesan error atau alihkan kembali dengan pesan
-            return redirect()->back()->with('error', 'Kode tidak valid, silakan coba lagi.');
+        if (!$pengaduan) {
+            return redirect()->back()->with('error', 'Kode antrian tidak ditemukan.');
         }
+
+        $pelapors = $pengaduan->pelapor()->with('pengaduan.status')->get();
+
+        return view('ceksts', [
+            'pengaduan' => $pengaduan,
+            'pelapors' => $pelapors,
+        ]);
     }
 }

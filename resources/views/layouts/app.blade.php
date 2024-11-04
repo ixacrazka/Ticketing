@@ -29,39 +29,51 @@
 <body class="font-[Outfit] bg-gray-100">
     <div class="min-h-screen flex">
 <!-- Sidebar -->
-<div class="w-64 min-h-screen m-4 bg-blue-600 text-white rounded-3xl hidden md:block font-[Outfit]">
+<div class="w-64 min-h-screen m-4 bg-indigo-950 text-white rounded-3xl hidden md:block font-[Outfit]">
     <div class="p-4 mt-8 ml-9 ">
         <span class="text-4xl text-yellow-400 font-bold">Ticket</span><span class="text-3xl text-white font-bold">Ing</span>
     </div>
     <ul class="mt-20 text-lg mx-5 sticky top-10">
-        <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 rounded-full {{ request()->is('dashboard') ? 'bg-white text-black' : '' }}">
+        <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 rounded-full {{ request()->is('dashboard') ? 'bg-neon text-black' : '' }}">
             <a href="/dashboard" class="flex items-center space-x-4">
                 <i class="fas fa-chart-line"></i> <!-- Icon -->
                 <span>Laporan</span>
             </a>
         </li>
-        <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('jenis') ? 'bg-white text-black' : '' }} rounded-full">
+        <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('jenis') ? 'bg-neon text-black' : '' }} rounded-full">
             <a href="/jenis" class="flex items-center space-x-4">
                 <i class="fas fa-list"></i> <!-- Icon -->
                 <span>Jenis Pengaduan</span>
             </a>
         </li>
-        <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('status') ? 'bg-white text-black' : '' }} rounded-full">
+        <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('status') ? 'bg-neon text-black' : '' }} rounded-full">
             <a href="/status" class="flex items-center space-x-4">
                 <i class="fas fa-info-circle"></i> <!-- Icon -->
                 <span>Status</span>
             </a>
         </li>
-        <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('pelapor') ? 'bg-white text-black' : '' }} rounded-full">
+        <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('pelapor') ? 'bg-neon text-black' : '' }} rounded-full">
             <a href="/pelapor" class="flex items-center space-x-4">
                 <i class="fas fa-user"></i> <!-- Icon -->
                 <span>Identitas Pelapor</span>
             </a>
         </li>
-        <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('aduan') ? 'bg-white text-black' : '' }} rounded-full">
+        <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('aduan') ? 'bg-neon text-black' : '' }} rounded-full">
             <a href="/aduan" class="flex items-center space-x-4">
                 <i class="fas fa-exclamation-circle"></i> <!-- Icon -->
                 <span>Aduan Error</span>
+            </a>
+        </li>
+        <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('rekaplaporan') ? 'bg-neon text-black' : '' }} rounded-full">
+            <a href="/rekaplaporan" class="flex items-center space-x-4">
+                <i class="fas fa-exclamation-circle"></i> <!-- Icon -->
+                <span>Rekap Laporan</span>
+            </a>
+        </li>
+        <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('rekapharian') ? 'bg-neon text-black' : '' }} rounded-full">
+            <a href="/rekapday" class="flex items-center space-x-4">
+                <i class="fas fa-exclamation-circle"></i> <!-- Icon -->
+                <span>Rekap Harian</span>
             </a>
         </li>
     </ul>

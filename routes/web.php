@@ -56,8 +56,9 @@ Route::middleware('auth')->group(function () {
         return view('count');
     });
 
+    //Cek Status Kode Antrian
     Route::get('/ceksts', [PelaporController::class, 'halamanStatusAntrian'])->name('ceksts');
-    Route::post('/ceksts', [PelaporController::class, 'cekStatusAntrian'])->name('ceksts');
+    Route::post('/ceksts', [PelaporController::class, 'cekStatus'])->name('ceksts');
 
 
 
