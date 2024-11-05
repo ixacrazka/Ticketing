@@ -16,7 +16,8 @@ class Pengaduan extends Model
         'jenis_id',
         'status_id',
         'file_foto',
-        'kode'
+        'kode',
+        'keterangan'
     ];
 
     public function pelapor()

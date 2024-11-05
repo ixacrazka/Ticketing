@@ -14,6 +14,7 @@ Route::middleware('auth')->group(function () {
 
 
     // View  Routes
+    Route::get('/rekaplaporan', [PelaporController::class, 'rekaplaporan'])->middleware(['verified'])->name('rekaplaporan');
     Route::get('/dashboard', [PelaporController::class, 'index'])->middleware(['verified'])->name('dashboard');
     Route::get('/pelapor', [PelaporController::class, 'pelapor'])->middleware(['verified'])->name('pelapor');
     Route::get('/aduan', [PelaporController::class, 'aduan'])->middleware(['verified'])->name('aduan');
@@ -30,12 +31,13 @@ Route::middleware('auth')->group(function () {
 
 
     // Status routes Crud
-    Route::post('/pelapor/{id}/status', [PelaporController::class, 'updateStatus'])->name('pelapor.updateStatus');
+    Route::post('/pelapor/{id}/update-status-keterangan', [PelaporController::class, 'updateStatusAndKeterangan'])->name('pelapor.updateStatusAndKeterangan');
+    Route::get('/status/{id}/editsts', [StatusController::class, 'edit'])->name('status.edit');
+    Route::put('/status/{id}', [StatusController::class, 'update'])->name('status.update');
+
     Route::get('/status/create', [StatusController::class, 'create'])->name('status.create');
     Route::post('/status', [StatusController::class, 'store'])->name('status.store');
     Route::delete('/status/{id}', [StatusController::class, 'destroy'])->name('status.destroy');
-    Route::get('/status/{id}/editsts', [StatusController::class, 'edit'])->name('status.edit');
-    Route::put('/status/{id}', [StatusController::class, 'update'])->name('status.update');
 });
 
 
@@ -57,7 +59,7 @@ Route::middleware('auth')->group(function () {
     });
 
     //Cek Status Kode Antrian
-    Route::get('/ceksts', [PelaporController::class, 'halamanStatusAntrian'])->name('ceksts');
+    Route::get('/ceksts', [PelaporController::class, 'halamanStatusAntrian'])->name('cekstsget');
     Route::post('/ceksts', [PelaporController::class, 'cekStatus'])->name('ceksts');
 
 

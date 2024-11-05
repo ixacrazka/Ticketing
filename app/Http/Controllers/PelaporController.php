@@ -33,6 +33,14 @@ class PelaporController extends Controller
         return view('dashboard', compact('pelapors','statues'));
     }
 
+    public function rekaplaporan()
+    {
+        $pelapors = Pelapor::with('instansi', 'pengaduan')->get();
+        $statues = Status::all();
+        return view('rekaplaporan', compact('pelapors','statues'));
+    }
+
+
     public function create()
     {
         $instansis = Instansi::get();
@@ -80,6 +88,7 @@ class PelaporController extends Controller
             'status_id' => 5,
             'file_foto' => $filename ?? '',
             'kode' => $kodePengaduan,
+            'keterangan' => $request->keterangan,
         ];
 
         $savePengaduan = Pengaduan::create($attr2);
@@ -101,24 +110,35 @@ class PelaporController extends Controller
     }
 
     // Mengubah status
-    public function updateStatus(Request $request, $id)
+    public function updateStatusAndKeterangan(Request $request, $id)
 {
+    // Validate the request data
+    $request->validate([
+        'keterangan' => 'required|string|max:255',
+    ]);
+
+    // Find the pelapor by ID
     $pelapor = Pelapor::findOrFail($id);
     $pengaduan = $pelapor->pengaduan;
 
+    // Check if the pengaduan exists
     if ($pengaduan) {
+        // Update the status and keterangan
         $pengaduan->status_id = $request->input('status');
-        $pengaduan->save();
+        $pengaduan->keterangan = $request->input('keterangan');
+        $pengaduan->save(); // Save the updated status and keterangan
     }
 
-    return redirect()->route('dashboard')->with('success', 'Status berhasil diubah');
+    // Redirect back to the dashboard with a success message
+    return redirect()->route('dashboard')->with('success', 'Status dan keterangan berhasil diubah');
 }
+
 
     public function halamanStatusAntrian()
     {
         return view('ceksts');
     }
-
+        //untuk cek kode status antrian
     public function cekStatus(Request $request)
     {
         $request->validate([

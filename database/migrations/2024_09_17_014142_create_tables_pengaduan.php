@@ -20,7 +20,8 @@ return new class extends Migration
             $table->bigInteger('jenis_id');
             $table->string('file_foto');
             $table->string('kode');
-            $table->timestamps(); 
+            $table->string('keterangan');
+            $table->timestamps();
         });
     }
 

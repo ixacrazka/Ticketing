@@ -123,7 +123,7 @@
                                         <span class="bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-sm">1</span>
                                         <h3 class="ml-3 text-base font-medium">{{ $ceksts->pengaduan->status->name }}</h3>
                                     </div>
-                                    <p class="ml-9 text-gray-600 text-sm">Menunggu Konfirmasi dari Pihak Aplikasi.</p>
+                                    <p class="ml-9 text-gray-600 text-sm"> {{ $ceksts->pengaduan->keterangan ?? 'Mohon tunggu konfirmasi dari Petugas' }}</p>
                                 </li>
                             @endforeach
                         </ul>
