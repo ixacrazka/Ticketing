@@ -28,13 +28,17 @@
                                         <!-- Tombol untuk akses halaman edit -->
                                          <form action="{{ route('jenis.edit', $item->id) }}"class="inline-block">
                                          @csrf
-                                             <button class="px-4 py-2 text-white bg-purpneo rounded-3xl hover:text-neon font-bold hover:scale-105 transition-transform duration-300">Edit</button>
+                                             <button class="px-4 py-2 text-white bg-purpneo rounded-3xl hover:text-neon font-bold hover:scale-105 transition-transform duration-300">
+                                             <i class="fas fa-edit mr-1"></i>Edit
+                                            </button>
                                          </form>
                                             <!-- Button Delete -->
                                             <form id="delete-form-{{ $item->id }}" action="{{ route('jenis.destroy', $item->id) }}" method="POST" class="inline-block">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" class="px-4 py-2 text-white bg-redneo rounded-3xl shadow-lg hover:text-neon font-bold hover:scale-105 transition-transform duration-300" onclick="confirmDelete('{{ $item->id }}')">Hapus</button>
+                                                <button type="button" class="px-4 py-2 text-white bg-redneo rounded-3xl shadow-lg hover:text-neon font-bold hover:scale-105 transition-transform duration-300" onclick="confirmDelete('{{ $item->id }}')"><i class="fas fa-trash-alt mr-1"></i>
+                                                Hapus
+                                            </button>
                                             </form>
                                             <div id="deleteModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
                                             <div class="bg-white p-6 rounded-lg shadow-lg">

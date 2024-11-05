@@ -2,7 +2,7 @@
 
 @section('content')
 
- <!-- Aleert -->
+<!-- Alert -->
 <div class="flex">
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -11,39 +11,38 @@
                     {{ session('success') }}
                 </div>
             @endif
- <!-- Aleert -->
+            <!-- Alert -->
 
-            <!--TABEL PELAPORAN  -->
-            <div class="overflow-scroll">
+            <!-- TABEL PELAPORAN  -->
+            <div class="overflow-hidden">
                 <div class="p-6 text-black">
-                    <table id="pelaporTable" class="min-w-full rounded-3xl shadow-lg overflow-hidden">
+                    <table id="pelaporTable" class="min-w-full rounded-3xl shadow-lg">
                         <thead class="bg-gray-200">
                             <tr>
-                                <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Email</th>
-                                <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">No. HP</th>
-                                <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Nama Pelapor</th>
-                                <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Nama Aplikasi</th>
-                                <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Laporan Error</th>
-                                <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Status</th>
-                                <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Keterangan</th>
-                                <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Foto Error</th>
-                                <!-- <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Tanggal</th> -->
-                                <th class="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-700 uppercase">Actions</th>
+                                <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">Email</th>
+                                <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">No. HP</th>
+                                <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">Nama Pelapor</th>
+                                <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">Nama Aplikasi</th>
+                                <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">Laporan Error</th>
+                                <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">Status</th>
+                                <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">Keterangan</th>
+                                <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">Foto Error</th>
+                                <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach($pelapors as $pelapor)
                                 <tr>
-                                    <td class="px-4 py-2">{{ $pelapor->email }}</td>
-                                    <td class="px-4 py-2">{{ $pelapor->nohp }}</td>
-                                    <td class="px-4 py-2">{{ $pelapor->npelapor }}</td>
-                                    <td class="px-4 py-2">{{ $pelapor->pengaduan->naplikasi ?? 'data-tidak-ditemukan' }}</td>
-                                    <td class="px-4 py-2">{{ $pelapor->pengaduan->laporan ?? 'data-tidak-ditemukan' }}</td>
-                                    <td class="px-4 py-2">{{ $pelapor->pengaduan->status->name ?? 'data-tidak-ditemukan' }}</td>
-                                    <td class="px-4 py-2">{{ $pelapor->pengaduan->keterangan ?? 'data-tidak-ditemukan' }}</td>
-                                    <td class="px-4 py-2">
+                                    <td class="px-2 py-1 text-sm">{{ $pelapor->email }}</td>
+                                    <td class="px-2 py-1 text-sm">{{ $pelapor->nohp }}</td>
+                                    <td class="px-2 py-1 text-sm">{{ $pelapor->npelapor }}</td>
+                                    <td class="px-2 py-1 text-sm">{{ $pelapor->pengaduan->naplikasi ?? 'data-tidak-ditemukan' }}</td>
+                                    <td class="px-2 py-1 text-sm">{{ $pelapor->pengaduan->laporan ?? 'data-tidak-ditemukan' }}</td>
+                                    <td class="px-2 py-1 text-sm">{{ $pelapor->pengaduan->status->name ?? 'data-tidak-ditemukan' }}</td>
+                                    <td class="px-2 py-1 text-sm">{{ $pelapor->pengaduan->keterangan ?? 'data-tidak-ditemukan' }}</td>
+                                    <td class="px-2 py-1">
                                         @if ($pelapor->pengaduan && $pelapor->pengaduan->file_foto)
-                                            <img src="{{ asset('uploads/file_foto/' . $pelapor->pengaduan->file_foto) }}" alt="Foto Pelapor" class="w-20 h-20 cursor-pointer" onclick="document.getElementById('modal-{{ $pelapor->id }}').showModal()">
+                                            <img src="{{ asset('uploads/file_foto/' . $pelapor->pengaduan->file_foto) }}" alt="Foto Pelapor" class="w-16 h-16 cursor-pointer" onclick="document.getElementById('modal-{{ $pelapor->id }}').showModal()">
 
                                             <dialog id="modal-{{ $pelapor->id }}" class="modal">
                                                 <div class="flex justify-center items-center">
@@ -55,17 +54,19 @@
                                             <span>data-tidak-ditemukan</span>
                                         @endif
                                     </td>
-                                    <!-- <td class="px-4 py-2">{{ $pelapor->created_at }}</td> -->
-                                    <td class="px-4 py-2">
+                                    <td class="px-2 py-1">
                                         <div class="inline-flex space-x-2">
-                                            <button onclick="openStatusModal('{{ $pelapor->id }}')" class="px-4 py-2 text-white bg-purpneo rounded-3xl hover:text-neon font-bold hover:scale-105 transition-transform duration-300 w-32">Ubah Status</button>
+                                            <button onclick="openStatusModal('{{ $pelapor->id }}')" class="flex items-center px-3 py-1 text-white bg-purpneo rounded-full hover:bg-purple-600">
+                                                <i class="fas fa-edit mr-1"></i> Ubah
+                                            </button>
                                             <form id="delete-form-{{ $pelapor->id }}" action="{{ route('tambah.destroy', $pelapor->id) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" class="px-4 py-2 text-white bg-redneo rounded-3xl shadow-lg hover:text-neon font-bold hover:scale-105 transition-transform duration-300 w-32" onclick="confirmDelete('{{ $pelapor->id }}')">Hapus</button>
+                                                <button type="button" class="flex items-center px-3 py-1 text-white bg-red-600 rounded-full hover:bg-red-700" onclick="confirmDelete('{{ $pelapor->id }}')">
+                                                    <i class="fas fa-trash-alt mr-1"></i> Hapus
+                                                </button>
                                             </form>
                                         </div>
-
 
                                         <!-- MODAL DELETE -->
                                         <div id="deleteModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
@@ -79,7 +80,8 @@
                                             </div>
                                         </div>
                                         <!-- END MODAL DELETE -->
-                                      <!-- MODAL UBAH STATUS DAN KETERANGAN -->
+
+                                        <!-- MODAL UBAH STATUS DAN KETERANGAN -->
                                         <div id="statusModal-{{ $pelapor->id }}" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
                                             <div class="bg-white p-6 rounded-lg shadow-lg">
                                                 <h2 class="text-lg font-bold">Ubah Status dan Keterangan untuk {{ $pelapor->npelapor }}</h2>
@@ -87,7 +89,7 @@
                                                     @csrf
                                                     <div class="mt-4">
                                                         <label for="status" class="block text-sm font-medium">Pilih Status:</label>
-                                                        <select name="status" id="status" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm font-[Outfit]">
+                                                        <select name="status" id="status" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                                                             @foreach($statues as $sts)
                                                                 <option value="{{ $sts->id }}" {{ $pelapor->pengaduan && $pelapor->pengaduan->status_id == $sts->id ? 'selected' : '' }}>
                                                                     {{ $sts->name }}
@@ -112,10 +114,9 @@
 
                                     </td>
                                 </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -123,7 +124,7 @@
     </div>
 
     <script>
-    //Code untuk Data Tables
+    // Code untuk Data Tables
     $(document).ready(function() {
         $('#pelaporTable').DataTable({
             paging: true,
@@ -131,34 +132,29 @@
             lengthMenu: [5, 25, 50, 100] // Opsi jumlah baris per halaman
         });
     });
-    //End code untuk Data Tables
+    // End code untuk Data Tables
 
-    //Funnction untuk menampilakan mdoals hapus
+    // Function untuk menampilkan modal hapus
     function confirmDelete(pelaporId) {
-        event.preventDefault();  // Mencegah form submit langsung
         document.getElementById('deleteModal').classList.remove('hidden');
-
-        document.getElementById('confirmDeleteBtn').onclick = function () {
+        document.getElementById('confirmDeleteBtn').onclick = function() {
             document.getElementById('delete-form-' + pelaporId).submit();
         };
     }
 
+    // Function untuk membatalkan modal hapus
     function cancelDelete() {
         document.getElementById('deleteModal').classList.add('hidden');
     }
-    //End Funnction untuk menampilakan mdoals hapus
 
-    // Functions Untuk Menampilkan Modal Status
+    // Function untuk menampilkan modal status
     function openStatusModal(pelaporId) {
         document.getElementById('statusModal-' + pelaporId).classList.remove('hidden');
     }
 
+    // Function untuk menutup modal status
     function closeStatusModal(pelaporId) {
-    const modal = document.getElementById(`statusModal-${pelaporId}`);
-    if (modal) {
-        modal.classList.add('hidden'); // Menyembunyikan modal
+        document.getElementById('statusModal-' + pelaporId).classList.add('hidden');
     }
-}
-    // End Functions Untuk Status Modal
-</script>
+    </script>
 @endsection

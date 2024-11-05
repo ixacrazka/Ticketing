@@ -16,6 +16,7 @@ Route::middleware('auth')->group(function () {
     // View  Routes
     Route::get('/rekaplaporan', [PelaporController::class, 'rekaplaporan'])->middleware(['verified'])->name('rekaplaporan');
     Route::get('/dashboard', [PelaporController::class, 'index'])->middleware(['verified'])->name('dashboard');
+    Route::get('/count', [PelaporController::class, 'count'])->middleware(['verified'])->name('count');
     Route::get('/pelapor', [PelaporController::class, 'pelapor'])->middleware(['verified'])->name('pelapor');
     Route::get('/aduan', [PelaporController::class, 'aduan'])->middleware(['verified'])->name('aduan');
     Route::get('/jenis', [JenisController::class, 'index'])->name('jenis.index');
@@ -38,6 +39,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/status/create', [StatusController::class, 'create'])->name('status.create');
     Route::post('/status', [StatusController::class, 'store'])->name('status.store');
     Route::delete('/status/{id}', [StatusController::class, 'destroy'])->name('status.destroy');
+
+
+    Route::get('/filter', [PelaporController::class, 'filter'])->name('filter');
+    Route::get('/export-pdf', [PelaporController::class, 'exportPdf'])->name('export.pdf');
+
+
 });
 
 
@@ -53,10 +60,10 @@ Route::middleware('auth')->group(function () {
     })->name('kodeantrian');
     //Route Cek Status
 
-    Route::get('/count', function()
-    {
-        return view('count');
-    });
+    // Route::get('/count', function()
+    // {
+    //     return view('count');
+    // });
 
     //Cek Status Kode Antrian
     Route::get('/ceksts', [PelaporController::class, 'halamanStatusAntrian'])->name('cekstsget');

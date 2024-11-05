@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pengaduan', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->bigInteger('pelapor_id');
             $table->string('naplikasi');
             $table->text('laporan');

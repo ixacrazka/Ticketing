@@ -8,7 +8,10 @@ use App\Models\Instansi;
 use App\Models\Jenis;
 use App\Models\Pengaduan;
 use App\Models\Status;
+use App\Models\User;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class PelaporController extends Controller
 {
@@ -33,11 +36,19 @@ class PelaporController extends Controller
         return view('dashboard', compact('pelapors','statues'));
     }
 
-    public function rekaplaporan()
+    public function count()
     {
         $pelapors = Pelapor::with('instansi', 'pengaduan')->get();
         $statues = Status::all();
-        return view('rekaplaporan', compact('pelapors','statues'));
+        return view('count', compact('pelapors','statues'));
+    }
+
+    public function rekaplaporan()
+    {
+        $pelapors = Pelapor::with('instansi', 'pengaduan', 'user')->get();
+        $statues = Status::all();
+        $users = User::all();
+        return view('rekaplaporan', compact('pelapors','statues','users'));
     }
 
 
@@ -158,4 +169,39 @@ class PelaporController extends Controller
             'pelapors' => $pelapors,
         ]);
     }
+
+    public function filter(Request $request)
+    {
+        $query = Pelapor::with('pengaduan.status');
+
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+            $query->whereHas('pengaduan', function ($q) use ($request) {
+                $q->whereBetween('created_at', [$request->start_date, $request->end_date]);
+            });
+        }
+
+        $pelapors = $query->get();
+
+        return view('rekaplaporan', compact('pelapors'));
+    }
+
+    public function exportPdf(Request $request)
+    {
+        $query = Pelapor::whereHas('pengaduan', function ($q) use ($request) {
+            if ($request->filled('start_date') && $request->filled('end_date')) {
+                $q->whereBetween('created_at', [$request->start_date, $request->end_date]);
+            }
+        })->with('pengaduan.status');
+
+        $pelapors = $query->get();
+
+        if ($pelapors->isEmpty()) {
+            return redirect()->back()->with('error', 'Tidak ada data ditemukan untuk tanggal tersebut.');
+        }
+
+        $pdf = Pdf::loadView('rekaplaporan', compact('pelapors'));
+        return $pdf->download('pelapor_report.pdf');
+    }
+
+
 }

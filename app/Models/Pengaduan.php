@@ -17,7 +17,8 @@ class Pengaduan extends Model
         'status_id',
         'file_foto',
         'kode',
-        'keterangan'
+        'keterangan',
+        'created_at'
     ];
 
     public function pelapor()
@@ -33,6 +34,10 @@ class Pengaduan extends Model
     public function jenis()
     {
         return $this->belongsTo(Jenis::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }

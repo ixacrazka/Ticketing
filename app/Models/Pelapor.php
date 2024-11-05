@@ -31,4 +31,8 @@ class Pelapor extends Model
     {
         return $this->belongsTo(Jenis::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

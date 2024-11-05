@@ -34,6 +34,12 @@
         <span class="text-4xl text-yellow-400 font-bold">Ticket</span><span class="text-3xl text-white font-bold">Ing</span>
     </div>
     <ul class="mt-20 text-lg mx-5 sticky top-10">
+    <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 rounded-full {{ request()->is('count') ? 'bg-neon text-black' : '' }}">
+            <a href="/count" class="flex items-center space-x-4">
+                <i class="fas fa-chart-line"></i> <!-- Icon -->
+                <span>Dashboard</span>
+            </a>
+        </li>
         <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 rounded-full {{ request()->is('dashboard') ? 'bg-neon text-black' : '' }}">
             <a href="/dashboard" class="flex items-center space-x-4">
                 <i class="fas fa-chart-line"></i> <!-- Icon -->
