@@ -38,7 +38,7 @@
                                     <td class="px-2 py-1 text-sm">{{ $pelapor->npelapor }}</td>
                                     <td class="px-2 py-1 text-sm">{{ $pelapor->pengaduan->naplikasi ?? 'data-tidak-ditemukan' }}</td>
                                     <td class="px-2 py-1 text-sm">{{ $pelapor->pengaduan->laporan ?? 'data-tidak-ditemukan' }}</td>
-                                    <td class="px-2 py-1 text-sm">{{ $pelapor->pengaduan->status->name ?? 'data-tidak-ditemukan' }}</td>
+                                    <td class="px-2 py-1 text-sm">{{ $pelapor->pengaduan->status->name ?? 'Menunggu Admin Mengubah Status' }}</td>
                                     <td class="px-2 py-1 text-sm">{{ $pelapor->pengaduan->keterangan ?? 'data-tidak-ditemukan' }}</td>
                                     <td class="px-2 py-1">
                                         @if ($pelapor->pengaduan && $pelapor->pengaduan->file_foto)

@@ -12,18 +12,18 @@
                 </div>
             @endif
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-lg font-semibold">Total Reports</h2>
-                    <p class="text-3xl font-bold"></p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="bg-white p-16 w-96 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-semibold">Total Pelapor</h2>
+                    <p class="text-3xl font-bold mt-10 m-4">5</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-lg font-semibold">Total Users</h2>
-                    <p class="text-3xl font-bold"></p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-lg font-semibold">Total Statuses</h2>
-                    <p class="text-3xl font-bold"></p>
+                <div class="bg-white p-16 w-96 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-semibold">Total Status</h2>
+                    <p class="">Ditolak:</p>
+                    <p class="">Dikonfirmasi:</p>
+                    <p class="">Diproses:</p>
+                    <p class="">Selesai:</p>
+                    <p class="">Menunggu Konfirmasi:</p>
                 </div>
                 <!-- Add more cards as needed -->
             </div>
