@@ -14,10 +14,10 @@
             <!-- Alert -->
 
             <!-- TABEL PELAPORAN  -->
-            <div class="overflow-hidden">
+            <div class="overflow-hidden bg-gray-100 rounded-3xl">
                 <div class="p-6 text-black">
-                    <table id="pelaporTable" class="min-w-full rounded-3xl shadow-lg">
-                        <thead class="bg-gray-200">
+                    <table id="pelaporTable" class="min-w-full">
+                        <thead class="bg-gray-200 rounded-3xl">
                             <tr>
                                 <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">Email</th>
                                 <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">No. HP</th>
@@ -56,13 +56,13 @@
                                     </td>
                                     <td class="px-2 py-1">
                                         <div class="inline-flex space-x-2">
-                                            <button onclick="openStatusModal('{{ $pelapor->id }}')" class="flex items-center px-3 py-1 text-white bg-purpneo rounded-full hover:bg-purple-600">
+                                            <button onclick="openStatusModal('{{ $pelapor->id }}')" class="flex items-center px-3 py-1 text-black bg-gray-200 rounded-xl hover:text-blue-500 hover:scale-105 transition-transform duration-300">
                                                 <i class="fas fa-edit mr-1"></i> Ubah
                                             </button>
                                             <form id="delete-form-{{ $pelapor->id }}" action="{{ route('tambah.destroy', $pelapor->id) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" class="flex items-center px-3 py-1 text-white bg-red-600 rounded-full hover:bg-red-700" onclick="confirmDelete('{{ $pelapor->id }}')">
+                                                <button type="button" class="flex items-center px-3 py-1 text-black bg-gray-200 rounded-xl hover:text-red-600 hover:scale-105 transition-transform duration-300" onclick="confirmDelete('{{ $pelapor->id }}')">
                                                     <i class="fas fa-trash-alt mr-1"></i> Hapus
                                                 </button>
                                             </form>
@@ -111,7 +111,6 @@
                                             </div>
                                         </div>
                                         <!-- End Untuk Modal Update -->
-
                                     </td>
                                 </tr>
                             @endforeach
@@ -126,12 +125,16 @@
     <script>
     // Code untuk Data Tables
     $(document).ready(function() {
-        $('#pelaporTable').DataTable({
-            paging: true,
-            pageLength: 5, // Menentukan jumlah baris per halaman
-            lengthMenu: [5, 25, 50, 100] // Opsi jumlah baris per halaman
-        });
+    $('#pelaporTable').DataTable({
+        paging: true,
+        pageLength: 5,
+        lengthMenu: [5, 25, 50, 100]
     });
+
+    // Pastikan border-radius tetap diterapkan
+    $('#pelaporTable').css('border-radius', '20px'); // Sesuaikan dengan ukuran yang diinginkan
+});
+
     // End code untuk Data Tables
 
     // Function untuk menampilkan modal hapus
