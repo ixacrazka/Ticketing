@@ -32,33 +32,32 @@
             #pelaporTable {
                 border-radius: 2.5rem; /* 3xl equivalent */
                 overflow: hidden;
-                margin: 30px 0;
+                margin: 30px 10px;
             }
 
             /* Style the search input field */
             .dataTables_filter input {
-                width: 250px;
+                width: 350px;
                 padding: 10px 20px; /* Adjust padding to fit the label and input */
                 border-radius: 40px;
                 border: 3px solid #ccc;
                 background-color: #C5D3E8;
                 padding-left: 50px; /* Extra padding for space for icon */
                 position: relative;
+                border: 2px solid black;
             }
 
             /* Position and style the search label to be inside the input */
             .dataTables_filter label {
                 position: relative;
-                font-size: 20px;
-                font-weight: bold;
+                font-size: 25px;
                 display: flex;
                 align-items: center;
-                gap: 10px;
+                gap: 20px;
             }
 
             /* Custom icon styling */
             .dataTables_filter label:before {
-                content: "🔍"; /* Unicode character for search icon */
                 position: absolute;
                 left: 10px;
                 font-size: 18px;
@@ -67,26 +66,26 @@
 
             /* Pagination button styling */
             .dataTables_paginate .paginate_button {
-                background-color: #007bff;
-                color: #fff;
+                background-color: #FBFBFB;
+                color: #FBFBFB;
                 border-radius: 30px;
                 padding: 5px 10px;
                 font-size: 14px;
                 margin: 0 3px;
-                border: none; /* Remove default border */
+                border: 2px solid black; /* Remove default border */
             }
 
             /* Styling for the active pagination button */
             .dataTables_paginate .paginate_button.current {
-                background-color: #fff;
-                color: #007bff; /* Change font color to match primary color */
+                background-color: #FBFBFB;
+                color: #FBFBFB; /* Change font color to match primary color */
                 font-weight: bold;
             }
 
             /* Previous and Next button styling */
             .dataTables_paginate .previous, .dataTables_paginate .next {
                 font-weight: bold;
-                background-color: #007bff;
+                background-color: #FBFBFB;
                 color: #fff;
                 border-radius: 30px;
                 padding: 5px 10px;
@@ -98,62 +97,56 @@
 <body class="font-[Outfit] bg-gray-100">
     <div class="min-h-screen flex">
 <!-- Sidebar -->
-<div class="w-64 min-h-screen  bg-blue-800 text-white rounded-xl ml-2 hidden md:block font-[Outfit]">
+<div class="w-64 min-h-screen  bg-blue-800 text-white rounded-r-lg hidden md:block font-[Outfit]">
     <div class="p-4 mt-8 ml-9">
         <span class="text-4xl text-yellow-400 font-bold">Ticket</span><span class="text-3xl text-white font-bold">Ing</span>
     </div>
     <ul class="mt-20 text-lg mx-5 sticky top-10">
-    <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 rounded-2xl {{ request()->is('count') ? 'bg-neon text-black' : '' }}">
-        <a href="/count" class="flex items-center space-x-4">
+    <li class="px-6 mb-2 py-2 hover:scale-105 transition-transform duration-300 rounded-2xl {{ request()->is('dashboard') ? 'bg-neon shadow-lg shadow-neon text-black' : '' }}">
+        <a href="/dashboard" class="flex items-center space-x-4">
             <i class="fas fa-chart-line"></i> <!-- Dashboard Icon -->
             <span>Dashboard</span>
         </a>
     </li>
-    <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 rounded-2xl {{ request()->is('dashboard') ? 'bg-neon text-black' : '' }}">
-        <a href="/dashboard" class="flex items-center space-x-4">
-            <i class="fas fa-file-alt"></i> <!-- Laporan Icon -->
-            <span>Laporan</span>
-        </a>
-    </li>
-    <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('jenis') ? 'bg-neon text-black' : '' }} rounded-2xl">
+    <li class="px-6 mb-2 py-2 hover:scale-105 hover:shadow-xl-neon  transition-transform duration-300 {{ request()->is('jenis') ? 'bg-neon shadow-lg shadow-neon text-black' : '' }} rounded-2xl">
         <a href="/jenis" class="flex items-center space-x-4">
             <i class="fas fa-list-alt"></i> <!-- Jenis Pengaduan Icon -->
             <span>Jenis Pengaduan</span>
         </a>
     </li>
-    <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('status') ? 'bg-neon text-black' : '' }} rounded-2xl">
+    <li class="px-6 mb-2 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('status') ? 'bg-neon shadow-lg shadow-neon text-black' : '' }} rounded-2xl">
         <a href="/status" class="flex items-center space-x-4">
             <i class="fas fa-info-circle"></i> <!-- Status Icon -->
             <span>Status</span>
         </a>
     </li>
-    <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('pelapor') ? 'bg-neon text-black' : '' }} rounded-2xl">
+    <li class="px-6 mb-2 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('pelapor') ? 'bg-neon shadow-lg shadow-neon text-black' : '' }} rounded-2xl">
         <a href="/pelapor" class="flex items-center space-x-4">
             <i class="fas fa-id-card"></i> <!-- Identitas Pelapor Icon -->
             <span>Identitas Pelapor</span>
         </a>
     </li>
-    <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('aduan') ? 'bg-neon text-black' : '' }} rounded-2xl">
+    <li class="px-6 mb-2 py-2 hover:scale-105 transition-transform duration-300 {{ request()->is('aduan') ? 'bg-neon shadow-lg shadow-neon text-black' : '' }} rounded-2xl">
         <a href="/aduan" class="flex items-center space-x-4">
             <i class="fas fa-bug"></i> <!-- Aduan Error Icon -->
             <span>Aduan Error</span>
         </a>
     </li>
      <!-- Dropdown Menu for Rekap Laporan and Rekap Harian -->
-     <li class="px-6 py-2 hover:scale-105 transition-transform duration-300 rounded-2xl relative">
+     <li class="px-6 mb-2 py-2 hover:scale-105 transition-transform duration-300 rounded-2xl relative">
         <button onclick="toggleDropdown()" class="flex items-center space-x-4 w-full focus:outline-none">
             <i class="fas fa-folder-open"></i> <!-- Rekap Icon -->
             <span>Rekap</span>
             <i class="fas fa-chevron-down ml-auto"></i> <!-- Dropdown Icon -->
         </button>
         <ul id="rekapDropdown" class="absolute left-0 mt-2 bg-indigo-950 rounded-2xl hidden">
-            <li class="px-6 py-2 hover:bg-yellow-400 hover:text-black rounded-2xl {{ request()->is('rekaplaporan') ? 'bg-neon text-black' : '' }}">
+            <li class="px-6 py-2 hover:text-white rounded-2xl {{ request()->is('rekaplaporan') ? 'bg-neon shadow-lg shadow-neon text-black' : '' }}">
                 <a href="/rekaplaporan" class="flex items-center space-x-4">
                     <i class="fas fa-folder-open"></i> <!-- Rekap Laporan Icon -->
                     <span>Rekap Laporan</span>
                 </a>
             </li>
-            <li class="px-6 py-2 hover:bg-yellow-400 hover:text-black rounded-2xl {{ request()->is('rekapday') ? 'bg-neon text-black' : '' }}">
+            <li class="px-6 py-2 hover:bg-yellow-400 hover:text-black rounded-2xl {{ request()->is('rekapday') ? 'bg-neon shadow-lg shadow-neon text-black' : '' }}">
                 <a href="/rekapday" class="flex items-center space-x-4">
                     <i class="fas fa-calendar-day"></i> <!-- Rekap Harian Icon -->
                     <span>Rekap Harian</span>

@@ -30,47 +30,46 @@ class PelaporController extends Controller
     }
 
     public function index()
-    {
-        $pelapors = Pelapor::with('instansi', 'pengaduan')->get();
-        $statues = Status::all();
-        return view('dashboard', compact('pelapors','statues'));
-    }
+{
+    $pelapors = Pelapor::with('instansi', 'pengaduan')->get();
+    $statues = Status::all();
 
-    public function count()
-    {
-         // Total count of 'pelapor'
-         $totalPelapor = Pelapor::count();
+    // Total pelapor count
+    $totalPelapor = Pelapor::count();
 
-         // Count of 'pelapor' based on 'status'
-         $totalStatusDitolak = Pelapor::whereHas('pengaduan.status', function ($query) {
-             $query->where('name', 'Ditolak');
-         })->count();
+    // Count of 'pelapor' based on 'status'
+    $totalStatusDitolak = Pelapor::whereHas('pengaduan.status', function ($query) {
+        $query->where('name', 'Ditolak');
+    })->count();
 
-         $totalStatusDikonfirmasi = Pelapor::whereHas('pengaduan.status', function ($query) {
-             $query->where('name', 'Dikonfirmasi');
-         })->count();
+    $totalStatusDikonfirmasi = Pelapor::whereHas('pengaduan.status', function ($query) {
+        $query->where('name', 'Dikonfirmasi');
+    })->count();
 
-         $totalStatusDiproses = Pelapor::whereHas('pengaduan.status', function ($query) {
-             $query->where('name', 'Diproses');
-         })->count();
+    $totalStatusDiproses = Pelapor::whereHas('pengaduan.status', function ($query) {
+        $query->where('name', 'Diproses');
+    })->count();
 
-         $totalStatusSelesai = Pelapor::whereHas('pengaduan.status', function ($query) {
-             $query->where('name', 'Selesai');
-         })->count();
+    $totalStatusSelesai = Pelapor::whereHas('pengaduan.status', function ($query) {
+        $query->where('name', 'Selesai');
+    })->count();
 
-         $totalStatusMenungguKonfirmasi = Pelapor::whereHas('pengaduan.status', function ($query) {
-             $query->where('name', 'Menunggu Konfirmasi');
-         })->count();
+    $totalStatusMenungguKonfirmasi = Pelapor::whereHas('pengaduan.status', function ($query) {
+        $query->where('name', 'Menunggu Konfirmasi');
+    })->count();
 
-         return view('count', compact(
-             'totalPelapor',
-             'totalStatusDitolak',
-             'totalStatusDikonfirmasi',
-             'totalStatusDiproses',
-             'totalStatusSelesai',
-             'totalStatusMenungguKonfirmasi'
-         ));
-     }
+    return view('dashboard', compact(
+        'pelapors',
+        'statues',
+        'totalPelapor',
+        'totalStatusDitolak',
+        'totalStatusDikonfirmasi',
+        'totalStatusDiproses',
+        'totalStatusSelesai',
+        'totalStatusMenungguKonfirmasi'
+    ));
+}
+
 
 
     public function rekaplaporan()

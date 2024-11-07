@@ -174,35 +174,35 @@
     <div class="container p-5 mx-auto">
       <div class="grid grid-cols-1 gap-4 md:grid-cols-5">
           <!-- Card 1 -->
-          <div class="p-6 text-center bg-white border-2 border-blue-300 rounded-lg shadow-lg hover:shadow-blue-800/50">
+          <div class="p-6 text-center bg-white border-2 border-blue-300 rounded-lg shadow-lg hover:-translate-y-3 hover:shadow-xl hover:shadow-blue-400 transition-all duration-[550ms]">
               <i class="mb-3 text-3xl text-blue-800 fas fa-pencil-alt"></i>
               <h3 class="text-lg font-semibold text-blue-800">Tulis Laporan</h3>
               <p class="text-sm text-gray-600">Laporkan pengaduan Anda dengan jelas dan lengkap</p>
           </div>
 
           <!-- Card 2 -->
-          <div class="p-6 text-center bg-white border-2 border-blue-300 rounded-lg shadow-lg hover:shadow-blue-800/50">
+          <div class="p-6 text-center bg-white border-2 border-blue-300 rounded-lg shadow-lg hover:-translate-y-3 hover:shadow-xl hover:shadow-blue-400 transition-all duration-[550ms]">
               <i class="mb-3 text-3xl text-blue-800 fas fa-undo"></i>
               <h3 class="text-lg font-semibold text-blue-800">Proses Verifikasi</h3>
               <p class="text-sm text-gray-600">Pengaduan Anda akan diverifikasi sebelum ditindaklanjuti</p>
           </div>
 
           <!-- Card 3 -->
-          <div class="p-6 text-center bg-white border-2 border-blue-300 rounded-lg shadow-lg hover:shadow-blue-800/50">
+          <div class="p-6 text-center bg-white border-2 border-blue-300 rounded-lg shadow-lg hover:-translate-y-3 hover:shadow-xl hover:shadow-blue-400 transition-all duration-[550ms]">
               <i class="mb-3 text-3xl text-blue-800 fas fa-comments"></i>
               <h3 class="text-lg font-semibold text-blue-800">Proses Tindak Lanjut</h3>
               <p class="text-sm text-gray-600">Instansi akan menindaklanjuti laporan pengaduan Anda</p>
           </div>
 
          <!-- Card 4 -->
-      <div class="p-6 text-center bg-white border-2 border-blue-300 rounded-lg shadow-lg hover:shadow-blue-800/50">
+      <div class="p-6 text-center bg-white border-2 border-blue-300 rounded-lg shadow-lg hover:-translate-y-3 hover:shadow-xl hover:shadow-blue-400 transition-all duration-[550ms]">
          <i class="mb-3 text-3xl text-blue-800 fas fa-eye"></i> <!-- Ikon diubah menjadi melihat -->
          <h3 class="text-lg font-semibold text-blue-800">Pantau Laporan Anda</h3> <!-- Teks diubah -->
          <p class="text-sm text-gray-600">Ketahui perkembangan pengaduan yang telah Anda ajukan.</p> <!-- Teks diubah menjadi lebih baku -->
         </div>
 
         <!-- Card 5 -->
-          <div class="p-6 text-center bg-white border-2 border-blue-300 rounded-lg shadow-lg hover:shadow-blue-800/50">
+          <div class="p-6 text-center bg-white border-2 border-blue-300 rounded-lg shadow-lg hover:-translate-y-3 hover:shadow-xl hover:shadow-blue-400 transition-all duration-[550ms]">
               <i class="mb-3 text-3xl text-blue-800 fas fa-check"></i>
               <h3 class="text-lg font-semibold text-blue-800">Selesai</h3>
               <p class="text-sm text-gray-600">Laporan pengaduan Anda telah selesai diproses</p>
