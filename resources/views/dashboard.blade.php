@@ -16,7 +16,7 @@
                 <!-- Card for Total Pelapor -->
                 <div class="h-fit bg-neon text-slate-700 p-6 sm:p-10 rounded-3xl shadow-md text-center border-2 border-gray-300 my-6">
                     <h2 class="text-xl sm:text-4xl font-semibold">Total Pelapor</h2>
-                    <p class="text-xl sm:text-5xl font-bold mt-6">{{ $totalPelapor }}</p>
+                    <p class="text-xl sm:text-5xl  mt-6">{{ $totalPelapor }}</p>
                 </div>
 
                 <!-- Card for Total Status Counts -->
@@ -24,7 +24,7 @@
                     <h2 class="text-4xl sm:text-3xl font-semibold">Total Status</h2>
 
                     <!-- Flex Layout for Total Status with horizontal items -->
-                    <div class="grid grid-cols-4 gap-4 mt-6 justify-start">
+                    <div class="grid grid-cols-5 gap-4 mt-6 justify-start">
                         <div class="grid items-center">
                             <p class="font-semibold">Ditolak</p>
                             <p class="font-bold rounded-xl p-5 bg-neon">{{ $totalStatusDitolak }}</p>
@@ -42,27 +42,27 @@
                             <p class="font-bold rounded-xl p-5 bg-neon">{{ $totalStatusSelesai }}</p>
                         </div>
                         <div class="grid items-center">
-                            <p class="font-semibold">Menunggu Konfirmasi</p>
+                            <p class="font-semibold -mt-4">Menunggu Konfirmasi</p>
                             <p class="font-bold rounded-xl p-5 bg-neon">{{ $totalStatusMenungguKonfirmasi }}</p>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- TABEL PELAPORAN -->
-            <div class="overflow-x-auto bg-gray-200 py-5 rounded-3xl shadow-xl mt-8">
-                <div class=" text-black">
-                    <table id="pelaporTable" class="min-w-full">
-                        <thead class="bg-gray-200 rounded-3xl text- s font-semibold text-gray-700 uppercase">
+            <div class="w-fit bg-gray-200 rounded-3xl py-8">
+                <div class=" text-black mr-5 ">
+                    <table id="pelaporTable">
+                        <thead class="bg-gray-200 rounded-3xl font-semibold text-gray-700 uppercase">
                             <tr>
-                                <th class="px-3 py-2">Email</th>
-                                <th class="px-3 py-2">No. HP</th>
-                                <th class="px-3 py-2">Nama Pelapor</th>
-                                <th class="px-3 py-2">Nama Aplikasi</th>
-                                <th class="px-3 py-2">Laporan Error</th>
-                                <th class="px-3 py-2">Status</th>
-                                <th class="px-3 py-2">Keterangan</th>
-                                <th class="px-3 py-2">Foto Error</th>
-                                <th class="px-3 py-2">Actions</th>
+                                <th class="px-2 py-2">Email</th>
+                                <th class="px-2 py-2">No. HP</th>
+                                <th class="px-2 py-2">Nama Pelapor</th>
+                                <th class="px-2 py-2">Nama Aplikasi</th>
+                                <th class="px-2 py-2">Laporan Error</th>
+                                <th class="px-2 py-2">Status</th>
+                                <th class="px-2 py-2">Keterangan</th>
+                                <th class="px-2 py-2">Foto Error</th>
+                                <th class="px-2 py-2">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white text-sm">
@@ -90,17 +90,61 @@
                                     </td>
                                     <td class="px-3 py-2">
                                         <div class="inline-flex space-x-2">
-                                            <button onclick="openStatusModal('{{ $pelapor->id }}')" class="flex items-center px-3 py-1 text-black bg-neon rounded-lg hover:text-black hover:scale-105 transition-transform duration-300">
+                                            <button onclick="openStatusModal('{{ $pelapor->id }}')" class="flex items-center px-3 py-1 text-black bg-neon rounded-xl hover:text-black hover:scale-105 transition-transform duration-300">
                                                 <i class="fas fa-edit mr-1"></i> Ubah Status
                                             </button>
                                             <form id="delete-form-{{ $pelapor->id }}" action="{{ route('tambah.destroy', $pelapor->id) }}" method="POST" class="inline">
-                                                @csrf
+                                            @csrf
                                                 @method('DELETE')
-                                                <button type="button" class="flex items-center px-3 py-4 text-black text-white bg-[#FF0000] rounded-xl hover:scale-105 transition-transform duration-300" onclick="confirmDelete('{{ $pelapor->id }}')">
+                                                <button type="button" class="flex items-center px-3 py-3 bg-[#FA4032] rounded-xl text-white hover:scale-105 transition-transform duration-300" onclick="confirmDelete('{{ $pelapor->id }}')">
                                                     <i class="fas fa-trash-alt mr-1"></i> Hapus
                                                 </button>
                                             </form>
                                         </div>
+
+                                        <!-- MODAL DELETE -->
+                                        <div id="deleteModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
+                                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                                <h2 class="text-lg font-bold">Konfirmasi Penghapusan</h2>
+                                                <p>Apakah Anda yakin ingin menghapus data ini?</p>
+                                                <div class="mt-4 flex justify-end space-x-4">
+                                                    <button type="button" onclick="cancelDelete()" class="px-4 py-2 bg-gray-300 text-black rounded-lg hover:bg-gray-400">Batal</button>
+                                                    <button id="confirmDeleteBtn" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Hapus</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END MODAL DELETE -->
+
+                                        <!-- MODAL UBAH STATUS DAN KETERANGAN -->
+                                        <div id="statusModal-{{ $pelapor->id }}" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
+                                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                                <h2 class="text-lg font-bold">Ubah Status dan Keterangan untuk {{ $pelapor->npelapor }}</h2>
+                                                <form action="{{ route('pelapor.updateStatusAndKeterangan', $pelapor->id) }}" method="POST">
+                                                    @csrf
+                                                    <div class="mt-4">
+                                                        <label for="status" class="block text-sm font-medium">Pilih Status:</label>
+                                                        <select name="status" id="status" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                                                            @foreach($statues as $sts)
+                                                                <option value="{{ $sts->id }}" {{ $pelapor->pengaduan && $pelapor->pengaduan->status_id == $sts->id ? 'selected' : '' }}>
+                                                                    {{ $sts->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="mt-4">
+                                                        <label for="keterangan" class="block text-sm font-medium">Keterangan:</label>
+                                                        <input type="text" name="keterangan" placeholder="Masukkan keterangan" required class="px-4 py-2 bg-gray-200 text-black rounded-lg w-full" value="{{ $pelapor->pengaduan->keterangan ?? '' }}">
+                                                    </div>
+
+                                                    <div class="mt-4 flex justify-end space-x-4">
+                                                        <button type="button" onclick="closeStatusModal('{{ $pelapor->id }}')" class="px-4 py-2 bg-gray-300 text-black rounded-lg hover:bg-gray-400">Batal</button>
+                                                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Update Status & Keterangan</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <!-- End Untuk Modal Update -->
                                     </td>
                                 </tr>
                             @endforeach

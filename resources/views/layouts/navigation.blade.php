@@ -16,13 +16,13 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-Poppins">
-<nav x-data="{ open: false }" class="p-6 text-gray-800 mt-10">
+<nav x-data="{ open: false }" class="p-6 text-gray-800 mt-4">
     <div class="bg-neon rounded-xl py-5 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Navigation Links -->
-                <div class="hidden items-center space-x-8 sm:-my-px sm:ml-10 sm:flex font-bold md:text-4xl">
-                   <span class=""> Welcome, {{ Auth::user()->name }}🙌</span>
+                <div class="hidden items-center space-x-8 sm:-my-px sm:ml-10 sm:flex font-semibold md:text-4xl">
+                   <span class=""> Welcome, {{ Auth::user()->name }}👋</span>
                 </div>
             </div>
 

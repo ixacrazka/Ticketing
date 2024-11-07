@@ -30,49 +30,36 @@
     <style>
     /* Styling the DataTable container */
             #pelaporTable {
-                border-radius: 2.5rem; /* 3xl equivalent */
+                border-radius: 30px; /* 3xl equivalent */
                 overflow: hidden;
-                margin: 30px 10px;
+                margin: 10px 10px;
+                border: none;
             }
 
             /* Style the search input field */
             .dataTables_filter input {
-                width: 350px;
-                padding: 10px 20px; /* Adjust padding to fit the label and input */
-                border-radius: 40px;
-                border: 3px solid #ccc;
-                background-color: #C5D3E8;
-                padding-left: 50px; /* Extra padding for space for icon */
-                position: relative;
-                border: 2px solid black;
+                width: 250px;
             }
 
             /* Position and style the search label to be inside the input */
             .dataTables_filter label {
                 position: relative;
-                font-size: 25px;
-                display: flex;
-                align-items: center;
-                gap: 20px;
+                font-size: 20px;
             }
 
             /* Custom icon styling */
             .dataTables_filter label:before {
                 position: absolute;
-                left: 10px;
-                font-size: 18px;
-                color: #333;
+                left: 30px;
+                font-size: 20px;
             }
 
             /* Pagination button styling */
             .dataTables_paginate .paginate_button {
                 background-color: #FBFBFB;
                 color: #FBFBFB;
-                border-radius: 30px;
-                padding: 5px 10px;
-                font-size: 14px;
-                margin: 0 3px;
-                border: 2px solid black; /* Remove default border */
+                font-size: 15px;
+                margin: 10px 10px;
             }
 
             /* Styling for the active pagination button */
@@ -87,8 +74,6 @@
                 font-weight: bold;
                 background-color: #FBFBFB;
                 color: #fff;
-                border-radius: 30px;
-                padding: 5px 10px;
             }
 
 
@@ -97,11 +82,12 @@
 <body class="font-[Outfit] bg-gray-100">
     <div class="min-h-screen flex">
 <!-- Sidebar -->
-<div class="w-64 min-h-screen  bg-blue-800 text-white rounded-r-lg hidden md:block font-[Outfit]">
-    <div class="p-4 mt-8 ml-9">
+<div class="w-64 min-h-screen bg-blue-800 text-white rounded-r-lg hidden md:block font-[Outfit]">
+    <div class="sticky top-4">
+    <div class="p-4 mt-8 ml-8">
         <span class="text-4xl text-yellow-400 font-bold">Ticket</span><span class="text-3xl text-white font-bold">Ing</span>
     </div>
-    <ul class="mt-20 text-lg mx-5 sticky top-10">
+    <ul class="mt-20 text-lg mx-5">
     <li class="px-6 mb-2 py-2 hover:scale-105 transition-transform duration-300 rounded-2xl {{ request()->is('dashboard') ? 'bg-neon shadow-lg shadow-neon text-black' : '' }}">
         <a href="/dashboard" class="flex items-center space-x-4">
             <i class="fas fa-chart-line"></i> <!-- Dashboard Icon -->
@@ -155,6 +141,7 @@
         </ul>
     </li>
 </ul>
+</div>
 </div>
 
 <!-- End Sidebar -->
