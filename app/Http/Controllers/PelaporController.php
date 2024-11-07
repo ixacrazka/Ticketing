@@ -38,10 +38,40 @@ class PelaporController extends Controller
 
     public function count()
     {
-        $pelapors = Pelapor::with('instansi', 'pengaduan')->get();
-        $statues = Status::all();
-        return view('count', compact('pelapors','statues'));
-    }
+         // Total count of 'pelapor'
+         $totalPelapor = Pelapor::count();
+
+         // Count of 'pelapor' based on 'status'
+         $totalStatusDitolak = Pelapor::whereHas('pengaduan.status', function ($query) {
+             $query->where('name', 'Ditolak');
+         })->count();
+
+         $totalStatusDikonfirmasi = Pelapor::whereHas('pengaduan.status', function ($query) {
+             $query->where('name', 'Dikonfirmasi');
+         })->count();
+
+         $totalStatusDiproses = Pelapor::whereHas('pengaduan.status', function ($query) {
+             $query->where('name', 'Diproses');
+         })->count();
+
+         $totalStatusSelesai = Pelapor::whereHas('pengaduan.status', function ($query) {
+             $query->where('name', 'Selesai');
+         })->count();
+
+         $totalStatusMenungguKonfirmasi = Pelapor::whereHas('pengaduan.status', function ($query) {
+             $query->where('name', 'Menunggu Konfirmasi');
+         })->count();
+
+         return view('count', compact(
+             'totalPelapor',
+             'totalStatusDitolak',
+             'totalStatusDikonfirmasi',
+             'totalStatusDiproses',
+             'totalStatusSelesai',
+             'totalStatusMenungguKonfirmasi'
+         ));
+     }
+
 
     public function rekaplaporan()
     {
@@ -199,8 +229,8 @@ class PelaporController extends Controller
             return redirect()->back()->with('error', 'Tidak ada data ditemukan untuk tanggal tersebut.');
         }
 
-        $pdf = Pdf::loadView('rekaplaporan', compact('pelapors'));
-        return $pdf->download('pelapor_report.pdf');
+        $pdf = PDF::loadView('rekappdf', compact('pelapors'))->setPaper('a4', 'landscape');
+        return $pdf->download('rekaplaporan.pdf');
     }
 
 

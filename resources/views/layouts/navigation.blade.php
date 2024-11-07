@@ -15,7 +15,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-Poppins bg-gray-100">
+<body class="font-Poppins">
 <nav x-data="{ open: false }" class="p-6 text-gray-800 mt-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -30,7 +30,7 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-full text-white bg-black border border-gray-700 hover:bg-gray-700 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-md text-white bg-black border border-gray-700 hover:bg-gray-700 focus:outline-none transition ease-in-out duration-150">
                             <span>Settings</span>
                             <div class="ml-1">
                                 <!-- SVG Icon Dropdown -->
