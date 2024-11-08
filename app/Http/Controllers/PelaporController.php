@@ -233,4 +233,48 @@ class PelaporController extends Controller
     }
 
 
+    public function rekaphari()
+{
+    $jenises = Jenis::all();
+
+    $statuesJenis = [];
+
+    // Loop untuk setiap jenis
+    foreach ($jenises as $jenis) {
+        $statuesJenis[$jenis->id] = [
+            'jenis_pengaduan' => $jenis->jenis_pengaduan,
+            'Dikonfirmasi' => Pelapor::whereHas('pengaduan', function ($query) use ($jenis) {
+                $query->where('jenis_id', $jenis->id)->whereHas('status', function ($q) {
+                    $q->where('name', 'Dikonfirmasi');
+                });
+            })->count(),
+            'Ditolak' => Pelapor::whereHas('pengaduan', function ($query) use ($jenis) {
+                $query->where('jenis_id', $jenis->id)->whereHas('status', function ($q) {
+                    $q->where('name', 'Ditolak');
+                });
+            })->count(),
+            'Diproses' => Pelapor::whereHas('pengaduan', function ($query) use ($jenis) {
+                $query->where('jenis_id', $jenis->id)->whereHas('status', function ($q) {
+                    $q->where('name', 'Diproses');
+                });
+            })->count(),
+            'Menunggu Konfirmasi' => Pelapor::whereHas('pengaduan', function ($query) use ($jenis) {
+                $query->where('jenis_id', $jenis->id)->whereHas('status', function ($q) {
+                    $q->where('name', 'Menunggu Konfirmasi');
+                });
+            })->count(),
+            'Selesai' => Pelapor::whereHas('pengaduan', function ($query) use ($jenis) {
+                $query->where('jenis_id', $jenis->id)->whereHas('status', function ($q) {
+                    $q->where('name', 'Selesai');
+                });
+            })->count(),
+        ];
+    }
+
+    return view('rekaphari', [
+        'statuesJenis' => $statuesJenis,
+    ]);
+}
+
+
 }

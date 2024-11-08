@@ -30,7 +30,7 @@
     <style>
     /* Styling the DataTable container */
             #pelaporTable {
-                border-radius: 30px; /* 3xl equivalent */
+                border-radius: 20px; /* 3xl equivalent */
                 overflow: hidden;
                 margin: 10px 10px;
                 border: none;
@@ -133,7 +133,7 @@
                 </a>
             </li>
             <li class="px-6 py-2 hover:bg-yellow-400 hover:text-black rounded-2xl {{ request()->is('rekapday') ? 'bg-neon shadow-lg shadow-neon text-black' : '' }}">
-                <a href="/rekapday" class="flex items-center space-x-4">
+                <a href="/rekaphari" class="flex items-center space-x-4">
                     <i class="fas fa-calendar-day"></i> <!-- Rekap Harian Icon -->
                     <span>Rekap Harian</span>
                 </a>

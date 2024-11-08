@@ -65,9 +65,9 @@
                                 <th class="px-2 py-2">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white text-sm">
+                        <tbody class="text-sm">
                             @foreach($pelapors as $pelapor)
-                                <tr class="border-b hover:bg-gray-50">
+                                <tr>
                                     <td class="px-3 py-2">{{ $pelapor->email }}</td>
                                     <td class="px-3 py-2">{{ $pelapor->nohp }}</td>
                                     <td class="px-3 py-2">{{ $pelapor->npelapor }}</td>

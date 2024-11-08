@@ -14,6 +14,7 @@ Route::middleware('auth')->group(function () {
 
 
     // View  Routes
+    Route::get('/rekaphari', [PelaporController::class, 'rekaphari'])->name('rekaphari');
     Route::get('/rekaplaporan', [PelaporController::class, 'rekaplaporan'])->middleware(['verified'])->name('rekaplaporan');
     Route::get('/dashboard', [PelaporController::class, 'index'])->middleware(['verified'])->name('dashboard');
     Route::get('/pelapor', [PelaporController::class, 'pelapor'])->middleware(['verified'])->name('pelapor');

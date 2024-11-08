@@ -12,11 +12,17 @@ class Jenis extends Model
     protected $table = 'jenis';
 
     protected $fillable = [
-        'jenis_pengaduan', 
+        'jenis_pengaduan',
     ];
-    
+
     public function pelapor()
     {
         return $this->hasMany(Pelapor::class, 'jenis_id', 'id');
     }
+
+    public function pengaduans()
+    {
+        return $this->hasMany(Pengaduan::class, 'jenis_id');
+    }
+
 }
