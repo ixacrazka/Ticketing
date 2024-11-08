@@ -71,7 +71,7 @@
         </div>
         <div class="sm:block sm:ml-6">
           <div class="flex justify-end space-x-4">
-            <a href="/ceksts" class="px-3 py-2 text-sm font-medium text-white border border-white rounded-lg hover:bg-slate-100 hover:text-black">Status Laporan</a>
+            <a href="/ceksts" class="px-3 py-2 text-sm font-medium text-white border border-white rounded-lg hover:bg-slate-100 hover:text-black">Cek Status Laporan</a>
           </div>
         </div>
       </div>

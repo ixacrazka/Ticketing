@@ -81,6 +81,7 @@ class PelaporController extends Controller
     }
 
 
+    // FNCT:FUNGSI UNTUK HALAMAN TAMBAH
     public function create()
     {
         $instansis = Instansi::get();
@@ -91,6 +92,8 @@ class PelaporController extends Controller
         return view('tambah', compact('instansis', 'jenis', 'countInstansi'));
     }
 
+
+    // FNCT:FUNGSI UNTUK HALAMAN ADUAN LAPORAN YANG BERFUNGSIN UNTUK STORE LAPORAN DAN LOGIKANYA ADALAH MENAMBAH KE TABLE PENGADUAN DAN PELAPOR DALAM 1 CONTROLLER SAJA
     public function store(Request $request)
     {
         $request->validate([
@@ -138,7 +141,7 @@ class PelaporController extends Controller
     }
 
 
-
+    //FNCT:FUNGSI UNTUK HALAMAN DASHBOARD UNTUK MENGHAPUS TABEL PADA DASHBOARD
     public function destroy($id)
     {
         $pelapor = Pelapor::findOrFail($id);
@@ -149,7 +152,7 @@ class PelaporController extends Controller
         return redirect()->route('dashboard')->with('success', 'Data berhasil dihapus');
     }
 
-    // Mengubah status
+    // FNCT:FUNGSI UNTUK HALAMAN DASHBOARD BERFUNGSI UNTUK MENGUBAH STATUS DAN KETERANGAN DAN MENAMPILKAN KE HALAMAN CEKSTS
     public function updateStatusAndKeterangan(Request $request, $id)
 {
     // Validate the request data
@@ -174,11 +177,12 @@ class PelaporController extends Controller
 }
 
 
+
+// FNCT:FUNGSI UNTUK HALAMAN CEKSTS YANG BERFUNGSI UNTUK MENGAMBIL KODE  PADA TABLE PENGADUAN LALU MENAMPILKAN DATA YANG ADA DI TABLE PENGADUAN
     public function halamanStatusAntrian()
     {
         return view('ceksts');
     }
-        //untuk cek kode status antrian
     public function cekStatus(Request $request)
     {
         $request->validate([
@@ -199,6 +203,7 @@ class PelaporController extends Controller
         ]);
     }
 
+    // FNCT: FUNGSI UNTUK HALAMAN REKAPLAPORAN YANG BERFUNGSI UNTUK MEMFILTER DATA PADA TABLE PER TANGGAL UNTUK DI EXPORT KE PDF
     public function filter(Request $request)
     {
         $query = Pelapor::with('pengaduan.status');
@@ -214,6 +219,8 @@ class PelaporController extends Controller
         return view('rekaplaporan', compact('pelapors'));
     }
 
+
+    //FNCT:FUNGSI UNTUK HALAMAN HALAMAN REKAPLAPORAN YANG BERFUNGSI UNTUK MENGRXPORT DATA PADA TABLE KE PDF
     public function exportPdf(Request $request)
     {
         $query = Pelapor::whereHas('pengaduan', function ($q) use ($request) {
@@ -233,6 +240,8 @@ class PelaporController extends Controller
     }
 
 
+
+    // FNCT:FUNGSI UNTUK HALAMAN REKAPHARIAN YANG BERFUNGSI UNTUK MELIHAT JUMLAH STATUS/PERSTATUS PERJENIS PENGADUAN
     public function rekaphari()
 {
     $jenises = Jenis::all();
