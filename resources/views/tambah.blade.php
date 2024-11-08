@@ -96,36 +96,39 @@
             <label for="npelapor" class="block text-sm font-medium text-gray-700">Nama Pelapor</label>
             <input type="text" id="npelapor" name="npelapor" required
               class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              @error('npelapor')
+                <span class="text-red-600 text-sm">{{ $message }}</span>
+            @enderror
           </div>
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
             <input type="email" id="email" name="email" required
               class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              @error('email')
+                <span class="text-red-600 text-sm">{{ $message }}</span>
+            @enderror
           </div>
-          <!-- Column 2 -->
-          <!-- <div>
-            <label for="">instansi</label>
-            <select name="instansi_id" id="instansi_id">
-              @foreach($instansis as $ins)
-              <option value="{{ $ins->kode }}">{{ $ins->nama_instansi }}</option>
-              @endforeach
-            </select>
-          </div> -->
           <div>
             <label for="nohp" class="block text-sm font-medium text-gray-700">No HP</label>
             <input type="text" id="nohp" name="nohp" required
               class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              @error('nohp')
+                <span class="text-red-600 text-sm">{{ $message }}</span>
+            @enderror
           </div>
           <div>
             <label for="naplikasi" class="block text-sm font-medium text-gray-700">Nama Aplikasi</label>
             <input type="text" id="naplikasi" name="naplikasi" required
               class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              @error('naplikasi')
+                <span class="text-red-600 text-sm">{{ $message }}</span>
+            @enderror
           </div>
         </div>
 
-      <!-- form instasi dan jenis pengaduan -->
-<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-    <div>
+        <!-- FORM instasi dan jenis pengaduan -->
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div>
         <label for="instansi" class="block text-sm font-medium text-gray-700">Pilih Unit Kerja</label>
         <select id="instansi" name="instansi_id" required
             class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -134,8 +137,8 @@
                 <option value="{{ $unit->kode }}">{{ $unit->nama_instansi }}</option>
             @endforeach
         </select>
-    </div>
-    <div>
+       </div>
+       <div>
         <label for="jenis" class="block text-sm font-medium text-gray-700">Pilih Jenis Pengaduan</label>
         <select id="jenis" name="jenis_id" required
             class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -143,15 +146,18 @@
             @foreach($jenis as $jns)
                 <option value="{{ $jns->id }}">{{ $jns->jenis_pengaduan }}</option>
             @endforeach
-        </select>
-    </div>
-</div>
+          </select>
+         </div>
+        </div>
 
           <!-- laporan  -->
           <div>
             <label for="laporan" class="block text-sm font-medium text-gray-700">Isi Laporan Anda</label>
             <textarea id="laporan" name="laporan" rows="6" required
               class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+              @error('email')
+                <span class="text-red-600 text-sm">{{ $message }}</span>
+            @enderror
           </div>
 
           <!-- masukan foto -->

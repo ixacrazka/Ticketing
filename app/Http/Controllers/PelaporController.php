@@ -95,50 +95,60 @@ class PelaporController extends Controller
 
     // FNCT:FUNGSI UNTUK HALAMAN ADUAN LAPORAN YANG BERFUNGSIN UNTUK STORE LAPORAN DAN LOGIKANYA ADALAH MENAMBAH KE TABLE PENGADUAN DAN PELAPOR DALAM 1 CONTROLLER SAJA
     public function store(Request $request)
-    {
-        $request->validate([
-            'file_foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+            {
+                // Validate inputs, allowing `file_foto` to be an image or a PDF
+                $request->validate([
+                    'file_foto' => 'required|mimes:jpeg,png,jpg,gif,pdf|max:2048',
+                    'npelapor' => 'required|string|max:100',
+                    'email' => 'required|email',
+                    'nohp' => 'required|string|max:15',
+                    'naplikasi' => 'required|string|max:100',
+                    'laporan' => 'required|string|max:200',
+                    'keterangan' => 'nullable|string',
+                    // Foreign keys can be nullable if not required
+                    'instansi_id' => 'nullable|exists:instansi,kode',
+                    'jenis_id' => 'nullable|exists:jenis,id',
+                ]);
 
-        $attr1 = [
-            'npelapor' => $request->npelapor,
-            'email' => $request->email,
-            'nohp' => $request->nohp,
-            'instansi_id' => $request->instansi_id,
-        ];
+                $attr1 = [
+                    'npelapor' => $request->npelapor,
+                    'email' => $request->email,
+                    'nohp' => $request->nohp,
+                    'instansi_id' => $request->instansi_id,
+                ];
 
+                $savePelapor = Pelapor::create($attr1);
 
-        $savePelapor = Pelapor::create($attr1);
+                // Generate queue code (Kode Antrian)
+                $hitungPengaduan = Pengaduan::count() + 1;
+                $kodePengaduan = 'KDE-' . str_pad($hitungPengaduan, 3, '0', STR_PAD_LEFT);
 
-        //GENERATE KODE ANTRIAN
-        $hitungPengaduan = Pengaduan::count() + 1;
-        $kodePengaduan = 'KDE-' . str_pad($hitungPengaduan, 3, '0', STR_PAD_LEFT);
+                // Upload file to /uploads/file_foto
+                if ($request->hasFile('file_foto')) {
+                    $file = $request->file('file_foto');
+                    $ext = $file->getClientOriginalExtension();
+                    $newName = date('dmY') . Str::random(10) . '.' . $ext;
+                    $file->move('uploads/file_foto', $newName);
+                    $filename = $newName;
+                }
 
-        //upload foto KE file /uploads DI /storage
-        if ($request->hasFile('file_foto')) {
-            $file = $request->file('file_foto');
-            $ext = $file->getClientOriginalExtension();
-            $newName =  date('dmY') . Str::random(10) . '.' . $ext;
-            $file->move('uploads/file_foto', $newName);
-            $filename = $newName;
-        }
-        //UNTUK INPUT KE TABEL PENGADUAN
-        $attr2 = [
-            'pelapor_id' => $savePelapor->id,
-            'naplikasi' => $request->naplikasi,
-            'laporan' => $request->laporan,
-            'jenis_id' => $request->jenis_id,
-            'status_id' => 5,
-            'file_foto' => $filename ?? '',
-            'kode' => $kodePengaduan,
-            'keterangan' => $request->keterangan,
-        ];
+                // Insert data into Pengaduan table
+                $attr2 = [
+                    'pelapor_id' => $savePelapor->id,
+                    'naplikasi' => $request->naplikasi,
+                    'laporan' => $request->laporan,
+                    'jenis_id' => $request->jenis_id,
+                    'status_id' => 5,
+                    'file_foto' => $filename ?? '',
+                    'kode' => $kodePengaduan,
+                    'keterangan' => $request->keterangan,
+                ];
 
-        $savePengaduan = Pengaduan::create($attr2);
+                $savePengaduan = Pengaduan::create($attr2);
 
-        // Pass the generated code to the view
-        return view('kodeantrian', ['kode' => $kodePengaduan]);
-    }
+                // Pass the generated code to the view
+                return view('kodeantrian', ['kode' => $kodePengaduan]);
+            }
 
 
     //FNCT:FUNGSI UNTUK HALAMAN DASHBOARD UNTUK MENGHAPUS TABEL PADA DASHBOARD
