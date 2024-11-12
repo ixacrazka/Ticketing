@@ -252,48 +252,54 @@ class PelaporController extends Controller
 
 
     // FNCT:FUNGSI UNTUK HALAMAN REKAPHARIAN YANG BERFUNGSI UNTUK MELIHAT JUMLAH STATUS/PERSTATUS PERJENIS PENGADUAN
-    public function rekaphari()
-{
-    $jenises = Jenis::all();
+    public function rekaphari(Request $request)
+    {
+        $query = Jenis::query();
 
-    $statuesJenis = [];
+        if ($request->has('search') && !empty($request->search)) {
+            $query->where('jenis_pengaduan', 'like', '%' . $request->search . '%');
+        } else {
+            $query->limit(1);
+        }
 
-    // Loop untuk setiap jenis
-    foreach ($jenises as $jenis) {
-        $statuesJenis[$jenis->id] = [
-            'jenis_pengaduan' => $jenis->jenis_pengaduan,
-            'Dikonfirmasi' => Pelapor::whereHas('pengaduan', function ($query) use ($jenis) {
-                $query->where('jenis_id', $jenis->id)->whereHas('status', function ($q) {
-                    $q->where('name', 'Dikonfirmasi');
-                });
-            })->count(),
-            'Ditolak' => Pelapor::whereHas('pengaduan', function ($query) use ($jenis) {
-                $query->where('jenis_id', $jenis->id)->whereHas('status', function ($q) {
-                    $q->where('name', 'Ditolak');
-                });
-            })->count(),
-            'Diproses' => Pelapor::whereHas('pengaduan', function ($query) use ($jenis) {
-                $query->where('jenis_id', $jenis->id)->whereHas('status', function ($q) {
-                    $q->where('name', 'Diproses');
-                });
-            })->count(),
-            'Menunggu Konfirmasi' => Pelapor::whereHas('pengaduan', function ($query) use ($jenis) {
-                $query->where('jenis_id', $jenis->id)->whereHas('status', function ($q) {
-                    $q->where('name', 'Menunggu Konfirmasi');
-                });
-            })->count(),
-            'Selesai' => Pelapor::whereHas('pengaduan', function ($query) use ($jenis) {
-                $query->where('jenis_id', $jenis->id)->whereHas('status', function ($q) {
-                    $q->where('name', 'Selesai');
-                });
-            })->count(),
-        ];
+        $jenises = $query->get();
+        $statuesJenis = [];
+
+        foreach ($jenises as $jenis) {
+            $statuesJenis[$jenis->id] = [
+                'jenis_pengaduan' => $jenis->jenis_pengaduan,
+                'Dikonfirmasi' => Pelapor::whereHas('pengaduan', function ($q) use ($jenis) {
+                    $q->where('jenis_id', $jenis->id)->whereHas('status', function ($q) {
+                        $q->where('name', 'Dikonfirmasi');
+                    });
+                })->count(),
+                'Ditolak' => Pelapor::whereHas('pengaduan', function ($q) use ($jenis) {
+                    $q->where('jenis_id', $jenis->id)->whereHas('status', function ($q) {
+                        $q->where('name', 'Ditolak');
+                    });
+                })->count(),
+                'Diproses' => Pelapor::whereHas('pengaduan', function ($q) use ($jenis) {
+                    $q->where('jenis_id', $jenis->id)->whereHas('status', function ($q) {
+                        $q->where('name', 'Diproses');
+                    });
+                })->count(),
+                'Menunggu Konfirmasi' => Pelapor::whereHas('pengaduan', function ($q) use ($jenis) {
+                    $q->where('jenis_id', $jenis->id)->whereHas('status', function ($q) {
+                        $q->where('name', 'Menunggu Konfirmasi');
+                    });
+                })->count(),
+                'Selesai' => Pelapor::whereHas('pengaduan', function ($q) use ($jenis) {
+                    $q->where('jenis_id', $jenis->id)->whereHas('status', function ($q) {
+                        $q->where('name', 'Selesai');
+                    });
+                })->count(),
+            ];
+        }
+
+        return view('rekaphari', [
+            'statuesJenis' => $statuesJenis,
+        ]);
     }
-
-    return view('rekaphari', [
-        'statuesJenis' => $statuesJenis,
-    ]);
-}
 
 
 }
