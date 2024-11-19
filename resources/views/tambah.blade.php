@@ -53,6 +53,12 @@
     }
 </style>
 <!-- END STYLE BUAT BANNER-->
+  <!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -129,15 +135,15 @@
         <!-- FORM instasi dan jenis pengaduan -->
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div>
-        <label for="instansi" class="block text-sm font-medium text-gray-700">Pilih Unit Kerja</label>
-        <select id="instansi" name="instansi_id" required
-            class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            <option value="" disabled selected>Pilih Instansi</option>
-            @foreach($instansis as $unit)
-                <option value="{{ $unit->kode }}">{{ $unit->nama_instansi }}</option>
-            @endforeach
-        </select>
-       </div>
+            <label for="instansi" class="block text-sm font-medium text-gray-700">Pilih Unit Kerja</label>
+            <select id="instansi" name="instansi_id" required
+                class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm js-example-basic-single">
+                <option value="" disabled selected>Pilih Instansi</option>
+                @foreach($instansis as $unit)
+                    <option value="{{ $unit->kode }}">{{ $unit->nama_instansi }}</option>
+                @endforeach
+            </select>
+        </div>
        <div>
         <label for="jenis" class="block text-sm font-medium text-gray-700">Pilih Jenis Pengaduan</label>
         <select id="jenis" name="jenis_id" required
@@ -224,5 +230,13 @@
   </footer>
 
 </body>
+<script>
+    $(document).ready(function() {
+        $('#instansi').select2({
+            placeholder: 'Pilih Instansi',
+            allowClear: true
+        });
+    });
+</script>
 
 </html>

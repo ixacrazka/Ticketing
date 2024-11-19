@@ -49,14 +49,13 @@
 
                 <!-- Actions -->
                 <div class="flex items-center justify-between mt-4">
-                    <div class="flex items-center space-x-4">
-                    </div>
-
                     <x-primary-button class="ml-3 bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-700 text-white px-4 py-2 rounded-md shadow-md">
                         {{ __('Log in') }}
                     </x-primary-button>
                 </div>
             </form>
+
+            <!-- Register Button -->
         </div>
     </x-guest-layout>
 
