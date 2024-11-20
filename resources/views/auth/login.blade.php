@@ -39,13 +39,22 @@
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
 
-                <!-- TOMBOL REMEMBER ME -->
-                <div class="block mt-4">
-                    <label for="remember_me" class="inline-flex items-center">
-                        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                        <span class="ml-2 text-sm text-gray-600">{{ __('Ingatkan Aku') }}</span>
-                    </label>
-                </div>
+                <!-- CAPTCHA -->
+                <div class="mt-2 mb-2">
+                        <div class="captcha flex flex-wrap">
+                            <span id="captcha_image" class="me-2">{!! captcha_img('math') !!}</span>
+                            <button type="button" class="bg-primary rounded-lg text-white px-5 py-2"
+                                id="reload">&#x21bb;</button>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 mb-2">
+                        <x-text-input type="text" class="w-full" placeholder="Masukkan Captcha" name="captcha"
+                            required></x-text-input>
+                        @error('captcha')
+                            <label for="" class="text-red-600">{{ $message }}</label>
+                        @enderror
+                    </div>
 
                 <!-- Actions -->
                 <div class="flex items-center justify-between mt-4">
@@ -58,6 +67,18 @@
             <!-- Register Button -->
         </div>
     </x-guest-layout>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#reload').click(function() {
+            $.ajax({
+                type: 'GET',
+                url: '/reload-captcha',
+                success: function(data) {
+                    $(".captcha span").html(data.captcha)
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

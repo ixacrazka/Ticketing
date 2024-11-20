@@ -4,6 +4,7 @@ use App\Http\Controllers\PelaporController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JenisController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\CaptchaController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
@@ -44,6 +45,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/filter', [PelaporController::class, 'filter'])->name('filter');
     Route::get('/export-pdf', [PelaporController::class, 'exportPdf'])->name('export.pdf');
 
+    Route::get('/captcha', [CaptchaController::class, 'showForm']);
+    Route::post('/captcha', [CaptchaController::class, 'submitForm']);
+
 
 });
 
@@ -64,10 +68,9 @@ Route::middleware('auth')->group(function () {
     // {
     //     return view('count');
     // });
-
-    //Cek Status Kode Antrian
-    Route::get('/ceksts', [PelaporController::class, 'halamanStatusAntrian'])->name('cekstsget');
-    Route::post('/ceksts', [PelaporController::class, 'cekStatus'])->name('ceksts');
+    Route::get('/reload-captcha', function () {
+        return response()->json(['captcha' => captcha_img('math')]);
+    });
 
 
 
