@@ -52,6 +52,10 @@
         font-family: 'Poppins', sans-serif; /* Apply Poppins font */
     }
 </style>
+
+<!-- Tambahkan ini di <head> jika menggunakan ikon Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
 <!-- END STYLE BUAT BANNER-->
   <!-- Select2 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
@@ -221,6 +225,12 @@
           </div>
       </div>
   </div>
+</div>
+
+<div id="whatsapp-button" class="fixed bottom-4 right-4">
+  <a href="https://wa.me/6281234567890" target="_blank" class="block p-4 text-white bg-green-500 rounded-full shadow-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400">
+    <i class="fab fa-whatsapp text-2xl"></i>
+  </a>
 </div>
 
   <footer class="py-20 mt-auto footer bg-blue-800 text-white">
